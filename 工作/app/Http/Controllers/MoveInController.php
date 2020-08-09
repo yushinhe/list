@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use App\MoveIn;
 use PhpParser\Node\Expr\New_;
@@ -16,6 +16,16 @@ class MoveInController extends Controller
         $movein->save();
         return redirect('asset-sys-movein');
      
-    
-    }
+        }
+        public function index()
+        {
+            $type = DB::select("SELECT `type` FROM `asset_categories_2`");
+            $bigtype = DB::select("SELECT `bigtype` FROM `asset_categories`");
+            $arr=array( 'bigtype'=>$bigtype,'type'=> $type);
+            return view('page-view.AssetSysMoveIn', $arr);
+            return redirect('asset-sys-movein')->with([
+                'flash_message' => '資料移交成功 !!'
+            ]);
+        }
+     
 }

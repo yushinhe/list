@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MoveIn extends Model
 {
     protected $fillable = [
-        'person', 'bigtype', 'type','brand','time'
+        'position','date','brand' ,'bigtype', 'type','object','lab','borrowed'
     ];
 
 }

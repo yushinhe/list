@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/asset-sys', function () {
+    return view('page-view/AssetSys');
+});
 Route::get('/asset-sys-borrow-out', function () {
     return view('page-view/AssetSysBorrowOut');
 });
@@ -34,14 +37,28 @@ Route::get('/asset-sys-withdraw', function () {
 Route::get('/asset-sys-returnback', function () {
     return view('page-view/AssetSysReturnBack');
 });
-Route::get('/asset-sys-returnback', function () {
-    return view('page-view/AssetSysReturnBack');
-});
 Route::get('/asset-sys-returnback-2', function () {
     return view('page-view/AssetSysReturnBack-2');
 });
+Route::get('/asset-sys-return', function () {
+    return view('page-view/AssetSysReturn');
+});
+Route::get('/asset-sys-return-1', function () {
+    return view('page-view/AssetSysReturn-1');
+});
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/asset-sys-movein', 'MoveInController@update');
+Route::post('/asset-sys-withdraw', 'WithdrawController@update');
+Route::post('/asset-sys-borrow', 'BorrowController@update');
+Route::get('/asset-sys-borrow-out', 'BorrowController@index');
+Route::get('/asset-sys-borrow-out-2', 'BorrowOutController@index');
+Route::get('/asset-sys-withdraw', 'WithdrawController@index');
+Route::get('/asset-sys-movein', 'MoveInController@index');
+// Route::get('/asset-sys-withdraw', 'WithdrawController@select');
+
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

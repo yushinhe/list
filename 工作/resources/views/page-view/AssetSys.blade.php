@@ -29,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white active" href="{{ url('/asset-sys') }}">資產管理</a>
+                        <a class="nav-link text-white active" href="{{url('/asset-sys')}}">資產管理</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Link</a>

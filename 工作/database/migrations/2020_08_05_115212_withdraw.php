@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MoveIn extends Migration
+class Withdraw extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class MoveIn extends Migration
      */
     public function up()
     {
-        Schema::create('move_ins', function (Blueprint $table) {
+        Schema::create('withdraws', function (Blueprint $table) {
            
-            $table->text('person');
+           
             $table->text('bigtype');
             $table->text('type');
-            $table->text('object');            
+            $table->text('person');
+            $table->longText('way');            
             $table->date('time');
             $table->timestamps();
 
@@ -32,7 +33,6 @@ class MoveIn extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MoveIn');
         //
     }
 }

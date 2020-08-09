@@ -29,7 +29,7 @@
                     <img src="images/816484.jpg" alt="logo" width="120px">
                 </a>
 
-                <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                <a class="nav-link text-white" href="{{url('/asset-sys')}}">資產管理</a>
 
                 <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
 

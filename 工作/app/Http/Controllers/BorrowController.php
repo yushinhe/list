@@ -22,8 +22,11 @@ class BorrowController extends Controller
     public function update(Request $request)
     {
         $borrow= New Borrow();
+        
         // return $request->all();
         $borrow = Borrow::create($request->all());
+        $borrow->user_id =auth()->user()->id;
+
         $borrow->save();
         return redirect('asset-sys-borrow')->with([
             'flash_message' => '借出申請成功 !!'

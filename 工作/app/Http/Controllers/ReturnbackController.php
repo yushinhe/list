@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Borrow;
 use DB;
 use Illuminate\Http\Request;
 
-class ReturnController extends Controller
+class ReturnbackController extends Controller
 {
     public function index(){
         $borrow =Borrow::all();
-     return view('page-view.AssetSysReturn', [
+     return view('page-view.AssetSysReturnBack', [
          'borrow' => $borrow
      ]);
      // echo $borrow;
@@ -18,7 +19,7 @@ class ReturnController extends Controller
         // $where= "AND `sid` = {$_GET['sid']}";
         // $borrow  = DB::select("SELECT * FROM `borrows` $where");
         $borrow=Borrow::find($id);
-        return view('page-view.AssetSysReturn-1', [
+        return view('page-view.AssetSysReturnBack-2', [
          'borrow' => $borrow
         ]);}
         public function edit(Request $request, $id)
@@ -26,10 +27,11 @@ class ReturnController extends Controller
             $borrow= New Borrow();
             // return $request->all();
             $borrow = Borrow::find($id);
-            $borrow->senddated =$request->input('senddated');
+            $borrow->backtime =$request->input('backtime');
+            $borrow->status =$request->input('status');
         
             $borrow ->save();
-    return redirect('asset-sys-return');
+    return redirect('asset-sys-returnback');
             
          
             }

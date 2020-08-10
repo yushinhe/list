@@ -28,6 +28,9 @@ Route::get('/asset-sys-borrow', function () {
 Route::get('/asset-sys-borrow-out-2/{id}', function () {
     return view('page-view/AssetSysBorrowOut-2');
 });
+// Route::get('/asset-sys-borrow-out-2', function () {
+//     return view('page-view/AssetSysBorrowOut-2');
+// });
 Route::get('/asset-sys-movein', function () {
     return view('page-view/AssetSysMoveIn');
 });
@@ -54,7 +57,12 @@ Route::get('/asset-sys-borrow', 'BorrowController@index1');
 Route::get('/asset-sys-borrow-out', 'BorrowController@index');
 Route::get('/asset-sys-borrow-out-2/{id}', 'BorrowOutController@index');
 Route::get('/asset-sys-return', 'ReturnController@index');
+Route::post('/asset-sys-return-1/{id}', 'ReturnController@edit');
 Route::get('/asset-sys-return-1/{id}', 'ReturnController@index1');
+Route::get('/asset-sys-returnback', 'ReturnbackController@index');
+Route::post('/asset-sys-returnback-2/{id}', 'ReturnbackController@edit');
+Route::get('/asset-sys-returnback-2/{id}', 'ReturnbackController@index1');
+Route::post('/asset-sys-borrow-out-2/{id}', 'BorrowOutController@edit');
 
 Route::get('/asset-sys-withdraw', 'WithdrawController@index');
 Route::get('/asset-sys-movein', 'MoveInController@index');

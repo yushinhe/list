@@ -72,8 +72,8 @@
         </nav>
         <div class="content d-flex">
             <div class="sidebar p-3 bg-light animated slideInLeft">
-                <ul class="list-group p-2">
-                    <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
+                <ul class="list-group p-2 list-unstyled">
+                <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
                             href=" {{ url('/asset-sys-movein') }} ">資產移交</a>
                     </li>
                     <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
@@ -109,38 +109,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
         </script>
-        <script>
-           $(function() {
-        $('#bigtype').change(function() {
-            //更動第一層時第二層清空
-            $('#object').empty().append("<option value=''>Open this select menu</option>");
-            var i = 0;
-            $.ajax({
-                type: "POST",
-                url: route('withdraw'),
-                data: {
-                    lv: $('#myParentSelect option:selected').val()
-                },
-                datatype: "json",
-                success: function(result) {
-                    //當第一層回到預設值時，第二層回到預設位置
-                    if (result == "") {
-                        $('#myFirstChildSelect').val($('option:first').val());
-                    }
-                    //依據第一層回傳的值去改變第二層的內容
-                    while (i < result.length) {
-                        $("#myFirstChildSelect").append("<option value='" + i + "'>" + result[i]['country'] + "</option>");
-                        i++;
-                    }
-                },
-                error: function(xhr, status, msg) {
-                    console.error(xhr);
-                    console.error(msg);
-                }
-            });
-        });
-    });
-        </script>
+    
 </body>
 
 </html>

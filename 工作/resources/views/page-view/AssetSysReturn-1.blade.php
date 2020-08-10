@@ -28,10 +28,12 @@
             </tr>
         </tbody>
     </table>
-    <form class="p-3" action="">
+    <form class="p-3" action="" method="POST">
+        {{ csrf_field() }}
+
         <div class="form-group py-2">
             <label for="formGroupExampleInput">實際歸還日期</label>
-            <input type="date" class="form-control" id="formGroupExampleInput">
+            <input type="date" class="form-control" id="formGroupExampleInput" name="senddated">
         </div>
         <div class="d-flex flex-row-reverse py-2">
             <button class="btn btn-info" type="submit">送出表單</button>

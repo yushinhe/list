@@ -12,7 +12,9 @@ class WithdrawController extends Controller{
         // return $request->all();
         $withdraw = Withdraw::create($request->all());
         $withdraw->save();
-        return redirect('asset-sys-withdraw');
+        return redirect('asset-sys-withdraw')->with([
+            'flash_message' => '領用申請成功 !!'
+        ]);
     }
     public function index()
     {

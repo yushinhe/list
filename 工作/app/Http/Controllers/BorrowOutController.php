@@ -13,5 +13,17 @@ class BorrowOutController extends Controller
         return view('page-view.AssetSysBorrowOut-2', [
          'borrow' => $borrow
         ]);
+   
+}  
+   public function edit(Request $request, $id)
+{
+    $borrow= New Borrow();
+    // return $request->all();
+    $borrow = Borrow::find($id);
+    $borrow->borrowed =$request->input('borrowed');
 
-}}
+    $borrow ->save();
+    return redirect('asset-sys-borrow-out');
+ 
+    }
+}

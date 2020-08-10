@@ -14,8 +14,10 @@ class MoveInController extends Controller
         // return $request->all();
         $movein = MoveIn::create($request->all());
         $movein->save();
-        return redirect('asset-sys-movein');
-     
+        // return redirect('asset-sys-movein');
+        return redirect('asset-sys-movein')->with([
+            'move_message' => '資料移交成功 !!'
+        ]);
         }
         public function index()
         {
@@ -23,9 +25,7 @@ class MoveInController extends Controller
             $bigtype = DB::select("SELECT `bigtype` FROM `asset_categories`");
             $arr=array( 'bigtype'=>$bigtype,'type'=> $type);
             return view('page-view.AssetSysMoveIn', $arr);
-            return redirect('asset-sys-movein')->with([
-                'flash_message' => '資料移交成功 !!'
-            ]);
+           
         }
      
 }

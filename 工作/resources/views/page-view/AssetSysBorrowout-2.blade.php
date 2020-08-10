@@ -1,4 +1,4 @@
-@extends('AssetSys')
+@extends('layouts.AssetSys')
 
 @section('content')
     <h2>資產借出</h2>
@@ -8,31 +8,30 @@
                 <th colspan="3">借用明細</th>
             </tr>
         </thead>
-        @foreach ($borrow  as $b)
+     
             <tbody>
                 <tr>
                     <th scope="row">借用人</th>
-                    <td>{{ $b->sid }}</td>
+                    <td>{{ $borrow->person }}</td>
                 </tr>
                 <tr>
                     <th scope="row">品項</th>
-                    <td>{{ $b->object }}</td>
+                    <td>{{ $borrow->object }}</td>
                 </tr>
                 <tr>
                     <th scope="row">借用時間</th>
-                    <td>{{ $b->borrowtime }}</td>
+                    <td>{{ $borrow->borrowtime }}</td>
                 </tr>
                 <tr>
                     <th scope="row">借用用途</th>
-                    <td>{{ $b->way }}</td>
+                    <td>{{ $borrow->way }}</td>
                 </tr>
                 <tr>
                     <th scope="row">歸還日期</th>
-                    <td>{{ $b->sendtime }}</td>
+                    <td>{{ $borrow->sendtime }}</td>
                 </tr>
             </tbody>
 
-        @endforeach
     </table>
     <form class="p-3" action="">
         <div class="d-flex flex-row-reverse py-2">

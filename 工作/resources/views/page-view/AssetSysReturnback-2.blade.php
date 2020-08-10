@@ -1,4 +1,5 @@
-@extends('AssetSys')
+@extends('layouts.AssetSys')
+
 
 @section('content')
           <h2>資產借出</h2>

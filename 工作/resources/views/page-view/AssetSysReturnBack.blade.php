@@ -1,4 +1,5 @@
-@extends('AssetSys')
+@extends('layouts.AssetSys')
+
 
 @section('content')
           <h2>歸還入庫</h2>

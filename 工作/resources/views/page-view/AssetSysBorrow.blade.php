@@ -1,4 +1,4 @@
-@extends('AssetSys')
+@extends('layouts.AssetSys')
 
 @section('content')
 
@@ -12,16 +12,23 @@
         <p>大類項</p>
         <select class="custom-select " name="bigtype">
             <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            @foreach ($bigtype as $k => $v)
+            @foreach ($v as $k1 => $v1)
+
+                <option>{{ $v1 }}</option>
+            @endforeach
+        @endforeach
+
         </select>
         <p>借用物品</p>
         <select class="custom-select " name="object">
             <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            @foreach ($object as $k => $v)
+            @foreach ($v as $k1 => $v1)
+
+                <option>{{ $v1 }}</option>
+            @endforeach
+            @endforeach
         </select>
         <div class="form-group py-2">
             <label for="formGroupExampleInput">借用日期</label>

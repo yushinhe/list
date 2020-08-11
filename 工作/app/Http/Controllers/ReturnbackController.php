@@ -10,6 +10,7 @@ class ReturnbackController extends Controller
 {
     public function index(){
         $borrow =Borrow::all();
+        
      return view('page-view.AssetSysReturnBack', [
          'borrow' => $borrow
      ]);
@@ -29,7 +30,7 @@ class ReturnbackController extends Controller
             $borrow = Borrow::find($id);
             $borrow->backtime =$request->input('backtime');
             $borrow->status =$request->input('status');
-        
+    
             $borrow ->save();
     return redirect('asset-sys-returnback');           
          
@@ -37,7 +38,7 @@ class ReturnbackController extends Controller
             // public function destroy(Request $request, Borrow $borrow)
             // {
             //     $borrow->delete();
-            //     // return $todo;
+      
         
             //     return redirect('asset-sys-returnback');
         

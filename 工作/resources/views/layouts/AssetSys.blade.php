@@ -20,7 +20,7 @@
 <body>
     <div class="container">
         <nav class="navbar navbar-expand-md navbar-light bg-danger text-white">
-            <a class="navbar-brand logo_main" href="#"><img src="images/816484.jpg" alt="logo"></a>
+            <a class="navbar-brand logo_main" href="#"><img src="./images/816484.jpg" alt="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,7 +50,7 @@
                     @endif
                 @else
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
@@ -85,13 +85,16 @@
                     <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
                             href="{{ url('/asset-sys-return') }}">資產歸還</a>
                     </li>
-                    
+                    @if(Auth::user()->role=='controller'  ) 
+         
                     <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
                             href="{{ url('/asset-sys-borrow-out') }}">資產借出</a>
                     </li>
                     <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
                             href="{{ url('/asset-sys-returnback') }}">歸還入庫</a>
                     </li>
+                    @endif  
+  
                 </ul>
             </div>
 

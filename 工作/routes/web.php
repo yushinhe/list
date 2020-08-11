@@ -68,8 +68,7 @@ Route::get('/asset-sys-withdraw', 'WithdrawController@index');
 Route::get('/asset-sys-movein', 'MoveInController@index');
 // Route::get('/asset-sys-withdraw', 'WithdrawController@select');
 // Route::delete('/asset-sys-returnback', 'ReturnbackController@destroy');
-
-
+// Route::get('/asset-sys', 'AssetController@index');
 
 Auth::routes();
 

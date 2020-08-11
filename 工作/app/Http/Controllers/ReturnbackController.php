@@ -31,8 +31,15 @@ class ReturnbackController extends Controller
             $borrow->status =$request->input('status');
         
             $borrow ->save();
-    return redirect('asset-sys-returnback');
-            
+    return redirect('asset-sys-returnback');           
          
             }
+            // public function destroy(Request $request, Borrow $borrow)
+            // {
+            //     $borrow->delete();
+            //     // return $todo;
+        
+            //     return redirect('asset-sys-returnback');
+        
+            // }
 }

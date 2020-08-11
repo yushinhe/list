@@ -67,7 +67,7 @@ Route::post('/asset-sys-borrow-out-2/{id}', 'BorrowOutController@edit');
 Route::get('/asset-sys-withdraw', 'WithdrawController@index');
 Route::get('/asset-sys-movein', 'MoveInController@index');
 // Route::get('/asset-sys-withdraw', 'WithdrawController@select');
-
+// Route::delete('/asset-sys-returnback', 'ReturnbackController@destroy');
 
 
 

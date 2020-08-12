@@ -1,6 +1,8 @@
 @extends('layouts.AssetSys')
 
 @section('content')
+@if(Auth::user()->role=='controller'  ) 
+
     <h2>資產借出</h2>
     <table class="table table-hover table-bordered">
         <thead>
@@ -51,4 +53,5 @@
             <!-- <button class="btn btn-outline-danger mx-5" type="reset">重新填寫</button> -->
         </div>
     </form>
+    @endif
 @endsection

@@ -515,13 +515,18 @@ INSERT INTO `asset_categories_2` (`sid`, `type`, `parent_sid`) VALUES
 --
 
 CREATE TABLE `borrows` (
-  `sid` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `bigtype` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `object` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `borrowtime` date NOT NULL,
   `person` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `way` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sendtime` date NOT NULL,
+  `sendtime` date DEFAULT NULL,
+  `borrowed` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `senddated` date DEFAULT NULL,
+  `backtime` date DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -530,17 +535,17 @@ CREATE TABLE `borrows` (
 -- 傾印資料表的資料 `borrows`
 --
 
-INSERT INTO `borrows` (`sid`, `bigtype`, `object`, `borrowtime`, `person`, `way`, `sendtime`, `created_at`, `updated_at`) VALUES
-(1, '1', '3', '2020-08-15', '', '123', '2020-08-13', '2020-08-05 06:33:26', '2020-08-05 06:33:26'),
-(2, '3', '2', '2020-08-15', '', '123', '2020-08-21', '2020-08-05 06:33:38', '2020-08-05 06:33:38'),
-(3, '2', '3', '2020-08-15', '', '123', '2020-08-26', '2020-08-05 07:02:59', '2020-08-05 07:02:59'),
-(4, '3', '2', '2020-07-17', '', '123', '2020-08-24', '2020-08-05 09:25:04', '2020-08-05 09:25:04'),
-(5, '2', '3', '2020-08-25', '123', '123', '2020-08-18', '2020-08-07 09:59:07', '2020-08-07 09:59:07'),
-(6, '2', '1', '2020-08-19', '123', '123', '2020-08-14', '2020-08-07 10:02:49', '2020-08-07 10:02:49'),
-(7, '3', '2', '2020-08-27', '123', '123', '2020-08-20', '2020-08-07 10:03:22', '2020-08-07 10:03:22'),
-(8, '2', '2', '2020-08-12', '123', '123', '2020-08-26', '2020-08-07 10:04:00', '2020-08-07 10:04:00'),
-(9, '1', '2', '2020-08-18', '123', '123', '2020-08-26', '2020-08-07 10:05:29', '2020-08-07 10:05:29'),
-(10, '1', '2', '2020-08-18', '123', '123', '2020-08-27', '2020-08-07 10:06:56', '2020-08-07 10:06:56');
+INSERT INTO `borrows` (`id`, `user_id`, `bigtype`, `object`, `borrowtime`, `person`, `way`, `sendtime`, `borrowed`, `senddated`, `backtime`, `status`, `created_at`, `updated_at`) VALUES
+(20, 0, '其他器材', '(E-007-01)Mini USB 雙頭充電線', '2020-08-04', '123', '123', '2020-08-21', NULL, NULL, NULL, NULL, '2020-08-10 07:29:15', '2020-08-10 07:29:15'),
+(22, 0, '其他器材', '(E-007-02)Mini USB 雙頭充電線', '2020-07-30', '123', '123', '2020-08-20', NULL, NULL, NULL, NULL, '2020-08-10 08:54:36', '2020-08-10 08:54:36'),
+(23, 0, '其他器材', '(E-007-02)Mini USB 雙頭充電線', '2020-08-05', '123', '123', '2020-08-28', NULL, NULL, NULL, NULL, '2020-08-10 09:17:23', '2020-08-10 09:17:23'),
+(24, 2, '電腦周邊', '(E-010-01)USB to micro B 充電線', '2020-08-20', '123', '123', '2020-08-26', NULL, NULL, NULL, NULL, '2020-08-10 09:18:34', '2020-08-10 09:18:34'),
+(25, 2, '其他器材', '(E-008-01)PHS手機傳輸線', '2020-08-13', '123', '123', '2020-08-12', NULL, NULL, NULL, NULL, '2020-08-10 09:56:22', '2020-08-10 09:56:22'),
+(26, 3, '其他器材', '(E-007-02)Mini USB 雙頭充電線', '2020-08-06', '123', '123', '2020-08-29', NULL, NULL, NULL, NULL, '2020-08-10 09:57:45', '2020-08-10 09:57:45'),
+(27, 4, '線材類', '(E-006-01)Mini USB 充電線 90cm', '2020-08-22', '李四', '123', '2020-08-20', NULL, NULL, NULL, NULL, '2020-08-10 10:05:04', '2020-08-10 10:05:04'),
+(28, 5, '口罩類', '(E-055-01)電腦螢幕VH192D', '2020-08-22', '余呆和', '123', '2020-08-29', NULL, '2020-09-03', NULL, NULL, '2020-08-10 11:45:49', '2020-08-10 13:34:39'),
+(29, 7, '電腦周邊', '(E-007-01)Mini USB 雙頭充電線', '2020-08-15', '王小明', '充電用', '2020-08-28', NULL, NULL, NULL, NULL, '2020-08-11 14:10:24', '2020-08-11 14:10:24'),
+(30, 8, '電腦周邊', '(E-004-01)Micro USB 充電線', '2020-08-27', '王二麻子', '充電', '2020-09-01', '確認借出', '2020-09-05', '2020-09-06', '線斷掉了', '2020-08-11 14:19:31', '2020-08-11 14:22:42');
 
 -- --------------------------------------------------------
 
@@ -1047,6 +1052,7 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1058,9 +1064,10 @@ CREATE TABLE `users` (
 -- 傾印資料表的資料 `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, '余信和', 'robin@gmail.com', NULL, '$2y$10$EGrmercT9L3SSMcWMBYkquNSoVrJqmbSaJORVpMQcUXlJfr.BZkMO', NULL, '2020-08-05 03:23:43', '2020-08-05 03:23:43'),
-(2, '王意文', 'bob@gmail.com', NULL, '$2y$10$tu9l7ku3SmNq87Vbqpg88OjI00FskOvBR1gkQ7579nztGij/sIMym', NULL, '2020-08-06 07:34:09', '2020-08-06 07:34:09');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, '王意文', 'bob@gmail.com', 'controller', NULL, '$2y$10$tu9l7ku3SmNq87Vbqpg88OjI00FskOvBR1gkQ7579nztGij/sIMym', NULL, '2020-08-06 07:34:09', '2020-08-06 07:34:09'),
+(8, '王二麻子', 'two@gmail.com', '\r\n', NULL, '$2y$10$8.Gnzan3rpZSikbA4Yy6iuBjK9n7fdStqYWMVj3PfveacX9MHvD2C', NULL, '2020-08-11 14:13:40', '2020-08-11 14:13:40'),
+(9, '123456', '1234567@gmail.com', '', NULL, '$2y$10$TsymZn70P2fPcCTDZLoEBe15u7L2Lclb9Grot78hYB/5FagkZJFCu', NULL, '2020-08-11 14:48:34', '2020-08-11 14:48:34');
 
 -- --------------------------------------------------------
 
@@ -1069,6 +1076,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 --
 
 CREATE TABLE `withdraws` (
+  `id` int(11) NOT NULL,
   `bigtype` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `object` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `person` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1082,10 +1090,24 @@ CREATE TABLE `withdraws` (
 -- 傾印資料表的資料 `withdraws`
 --
 
-INSERT INTO `withdraws` (`bigtype`, `object`, `person`, `way`, `time`, `created_at`, `updated_at`) VALUES
-('1', '1', '123', '123', '2020-08-20', '2020-08-05 06:08:12', '2020-08-05 06:08:12'),
-('1', '1', '123', '123', '2020-08-28', '2020-08-05 15:36:52', '2020-08-05 15:36:52'),
-('線材類', '1', '123', '123', '2020-08-21', '2020-08-05 16:46:03', '2020-08-05 16:46:03');
+INSERT INTO `withdraws` (`id`, `bigtype`, `object`, `person`, `way`, `time`, `created_at`, `updated_at`) VALUES
+(1, '1', '1', '123', '123', '2020-08-20', '2020-08-05 06:08:12', '2020-08-05 06:08:12'),
+(2, '1', '1', '123', '123', '2020-08-28', '2020-08-05 15:36:52', '2020-08-05 15:36:52'),
+(3, '線材類', '1', '123', '123', '2020-08-21', '2020-08-05 16:46:03', '2020-08-05 16:46:03'),
+(4, '攝影器材', '(E-005-01)充電線(含插頭)', '123', '123', '2020-09-23', '2020-08-10 07:25:43', '2020-08-10 07:25:43'),
+(5, '電腦周邊', '(E-008-01)PHS手機傳輸線', '123', '123', '2020-08-24', '2020-08-10 07:32:48', '2020-08-10 07:32:48'),
+(6, '其他器材', '(E-006-01)Mini USB 充電線 90cm', '123', '123', '2020-08-12', '2020-08-10 07:38:11', '2020-08-10 07:38:11'),
+(7, '電腦周邊', '(E-007-02)Mini USB 雙頭充電線', '123', '123', '2020-08-15', '2020-08-10 08:24:12', '2020-08-10 08:24:12'),
+(8, '其他器材', '(E-010-01)USB to micro B 充電線', '123', '123', '2020-08-21', '2020-08-10 08:24:52', '2020-08-10 08:24:52'),
+(9, '電腦周邊', '(E-009-01)USB A to B 印表機多功能傳輸線', '123', '123', '2020-08-19', '2020-08-10 08:26:46', '2020-08-10 08:26:46'),
+(10, '電腦周邊', '(E-007-01)Mini USB 雙頭充電線', '123', '123', '2020-08-27', '2020-08-10 08:50:24', '2020-08-10 08:50:24'),
+(11, '電腦周邊', '(E-007-01)Mini USB 雙頭充電線', '123', '123', '2020-08-27', '2020-08-10 08:50:36', '2020-08-10 08:50:36'),
+(12, '電腦周邊', '(E-008-01)PHS手機傳輸線', '123', '123', '2020-08-19', '2020-08-10 08:51:22', '2020-08-10 08:51:22'),
+(13, '電腦周邊', '(E-008-01)PHS手機傳輸線', '123', '123', '2020-08-19', '2020-08-10 08:52:46', '2020-08-10 08:52:46'),
+(14, '線材類', '(E-009-01)USB A to B 印表機多功能傳輸線', '123', '12', '2020-08-25', '2020-08-10 08:55:18', '2020-08-10 08:55:18'),
+(15, '線材類', '(E-008-01)PHS手機傳輸線', '123', '123', '2020-08-17', '2020-08-10 08:55:56', '2020-08-10 08:55:56'),
+(16, '電腦周邊', '(E-050-05)筆記型電腦手提包', '余信和', '出差用', '2020-08-12', '2020-08-11 14:08:44', '2020-08-11 14:08:44'),
+(17, '攝影器材', '(E-050-06)男用領帶', '王二麻子', '耍帥', '2020-08-12', '2020-08-11 14:18:29', '2020-08-11 14:18:29');
 
 --
 -- 已傾印資料表的索引
@@ -1113,7 +1135,7 @@ ALTER TABLE `asset_categories_2`
 -- 資料表索引 `borrows`
 --
 ALTER TABLE `borrows`
-  ADD PRIMARY KEY (`sid`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 資料表索引 `failed_jobs`
@@ -1147,6 +1169,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- 資料表索引 `withdraws`
+--
+ALTER TABLE `withdraws`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
 
@@ -1172,7 +1200,7 @@ ALTER TABLE `asset_categories_2`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `borrows`
 --
 ALTER TABLE `borrows`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `failed_jobs`
@@ -1190,13 +1218,19 @@ ALTER TABLE `migrations`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `move_ins`
 --
 ALTER TABLE `move_ins`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=424;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=433;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `withdraws`
+--
+ALTER TABLE `withdraws`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

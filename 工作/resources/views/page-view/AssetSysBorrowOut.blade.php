@@ -2,6 +2,7 @@
 
 
 @section('content')
+@if(Auth::user()->role=='controller'  ) 
 
 
     <h2>資產借出</h2>
@@ -13,5 +14,5 @@
                 {{ '品項名稱:' . $b->object . ' 借用人:'. $b->person .'  ' . '借用時間:' . $b->borrowtime. '借用確認:' . $b->borrowed }}</a>
         @endforeach
     </div>
-
+@endif
 @endsection

@@ -4,6 +4,7 @@
 
 
 @section('content')
+@if(Auth::user()->role=='controller'  ) 
 
           <h2>歸還入庫</h2>
           <p>歸還明細</p>
@@ -19,6 +20,8 @@
              <input type="submit" value="刪除">
           </form></div> --}}
     @endforeach
+@endif
+
           @endsection  
           
 

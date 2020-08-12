@@ -2,6 +2,7 @@
 
 
 @section('content')
+
     <h2>資產歸還</h2>
     <p>借用明細</p>
     <div class="list-group">
@@ -11,5 +12,4 @@
                 {{ '品項名稱:' . $b->object . '   ' . '借出確認:' . $b->borrowed .  '    實際歸還時間:' . $b->senddated }}</a>
         @endforeach
     </div>
-
 @endsection

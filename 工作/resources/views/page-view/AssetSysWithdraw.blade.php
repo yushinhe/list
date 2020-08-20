@@ -2,39 +2,16 @@
 
 
 @section('content')
-@if (Session::has('flash_message'))
-<div class="alert alert-success">{{ Session::get('flash_message') }}</div>
-@endif
+    <x-alert />
     <h2>資產領用</h2>
     <form class="p-3" method="POST">
         {{ csrf_field() }}
-        <p>大類項</p>
-
-            <select class="custom-select " name="bigtype" required>
-                <option selected>Open this select menu</option>
-                @foreach ($bigtype as $k => $v)
-                    @foreach ($v as $k1 => $v1)
-
-                        <option>{{ $v1 }}</option>
-                    @endforeach
-                @endforeach
-
-            </select>
-         
-    
-        <p class="pt-2">品項名稱</p>
-        <select class="custom-select" name="object" required>
-            <option selected>Open this select menu</option>
-            @foreach ($object as $k => $v)
-            @foreach ($v as $k1 => $v1)
-
-                <option>{{ $v1 }}</option>
-            @endforeach
-        @endforeach
-        </select>
+        @livewire('withdraw')
+        
         <div class="form-group py-2">
             <label for="formGroupExampleInput">領用人</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="name" name="person" required>
+            <input type="text" class="form-control" id="formGroupExampleInput" value="{{ Auth::user()->name }} "
+                name="person">
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput">領用時間</label>

@@ -2,10 +2,9 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use Illuminate\Support\Facades\Storage;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -16,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'avatar',
     ];
 
     /**
@@ -36,7 +35,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function borrows(){
-        return $this-> hasMany('App\Borrow');
+    public function borrows()
+    {
+        return $this->hasMany('App\Borrow');
+    }
+    public function withdraws()
+    {
+        return $this->hasMany('App\Withdraw');
+    }
+    public static function uploadAvatar($image)
+    {
+        $filename = $image->getClientOriginalName();
+       (new self())->deleteOldImage();
+       $image->storeAs('images', $filename,'public');
+        auth()->user()->update(['avatar' => $filename]);
+
+    }
+    protected function deleteOldImage()
+    {
+        if (auth()->user()->avatar){
+            Storage::delete('/public/images/'. auth()->user()->avatar);
+        }
     }
 }

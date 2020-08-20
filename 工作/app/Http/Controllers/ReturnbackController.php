@@ -11,18 +11,14 @@ class ReturnbackController extends Controller
     public function index(){
         $borrow =Borrow::all();
         
-     return view('page-view.AssetSysReturnBack', [
-         'borrow' => $borrow
-     ]);
-     // echo $borrow;
+     return view('page-view.AssetSysReturnBack', compact('borrow'));
+
     }
     public function index1($id){
         // $where= "AND `sid` = {$_GET['sid']}";
         // $borrow  = DB::select("SELECT * FROM `borrows` $where");
         $borrow=Borrow::find($id);
-        return view('page-view.AssetSysReturnBack-2', [
-         'borrow' => $borrow
-        ]);}
+        return view('page-view.AssetSysReturnBack-2', compact('borrow'));}
         public function edit(Request $request, $id)
         {
             $borrow= New Borrow();

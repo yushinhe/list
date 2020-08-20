@@ -10,10 +10,12 @@
             </tr>
         </thead>
         <tbody>
+            @foreach( $borrow->BorrowDetail as $step)
             <tr>
                 <th scope="row">品項</th>
-                <td>{{$borrow->object}}</td>
+                <td>{{ $step->object }}</td>
             </tr>
+            @endforeach
             <tr>
                 <th scope="row">借用時間</th>
                 <td>{{$borrow->borrowtime}}</td>
@@ -28,6 +30,8 @@
             </tr>
         </tbody>
     </table>
+    @if ($borrow->senddated=="")
+   
     <form class="p-3" action="" method="POST">
         {{ csrf_field() }}
 
@@ -40,4 +44,6 @@
             <button class="btn btn-outline-danger mx-5" type="reset">重新填寫</button>
         </div>
     </form>
+         @else
+    @endif
 @endsection

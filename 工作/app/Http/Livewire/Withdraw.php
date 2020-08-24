@@ -3,12 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\AssetCategory;
-use App\MoveIn;
+use DB;
 use Livewire\Component;
 
 class Withdraw extends Component
 {
     public $steps = [];
+    public $cates;
+
     public function increment()
     {
         $this->steps[] = count($this->steps);
@@ -19,7 +21,9 @@ class Withdraw extends Component
     }
     public function render()
     {
-        $object = MoveIn::all();
+        $cates=$this->cates;
+        $object = DB::table('move_ins')->where('bigtype', '=', $cates)->get();
+        // $object = MoveIn::all();
         $bigtype = AssetCategory::all();
         return view('livewire.withdraw', compact('object', 'bigtype'));
     }

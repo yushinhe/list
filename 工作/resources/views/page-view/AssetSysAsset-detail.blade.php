@@ -4,6 +4,7 @@
     @if (Auth::user()->role)
 
         <h2>資產詳細資料</h2>
+        
         <table class="table table-hover table-bordered">
             <thead>
                 <tr>

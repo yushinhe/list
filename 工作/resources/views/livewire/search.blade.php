@@ -1,13 +1,7 @@
-@extends('layouts.AssetSys')
-@section('content')
-@if (Auth::user()->role)
-
-    <h2>資產列表</h2>
-    <x-alert />
-    {{-- {{ $movein->links() }} --}}
-    @livewire('search')
-
-    {{-- <div class="list-group">
+<div>
+    <input type="text" class="form-control my-2" id="formGroupExampleInput" wire:model="search">
+    <div class="list-group">
+        {{-- {{ $movein->links() }} --}}
         @foreach ($movein as $l)
             <div class="d-flex list-group-item list-group-item-action">
                 {{ '品項名稱:' . $l->object }}
@@ -27,8 +21,5 @@
                 @endif
             </div>
         @endforeach
-    </div> --}}
-    @else
-
-    @endif
-@endsection
+    </div>
+</div>

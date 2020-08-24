@@ -8,9 +8,9 @@ use App\MoveIn;
 class Assetcontroller extends Controller
 {public function index()
     {
-    $movein = Movein::paginate(12);
+    // $movein = Movein::paginate(12);
     $assetCategory = AssetCategory::all();
-    return view('page-view.AssetSysAsset', compact('movein','assetCategory'));
+    return view('page-view.AssetSysAsset');
 }
     public function destroy(MoveIn $id)
     {

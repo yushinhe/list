@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\AssetCategory;
+use DB;
 use App\Borrow;
 use Illuminate\Http\Request;
 use App\BorrowDetail;
@@ -27,8 +28,10 @@ class BorrowController extends Controller
         return redirect()->back()->with('message', '借出成功');
 
     }
-    public function index1()
+    public function index1(Request $request)
     {
+        $bigtype = AssetCategory::all();
+       
         return view('page-view.AssetSysBorrow');
     }
     //

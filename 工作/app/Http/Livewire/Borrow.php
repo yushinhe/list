@@ -2,24 +2,31 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\AssetCategory;
-use App\MoveIn;
+use DB;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\Component;
+
 class Borrow extends Component
 {
+    use AuthorizesRequests;
     public $steps = [];
+    public $cates;
+
     public function increment()
     {
         $this->steps[] = count($this->steps);
     }
     public function remove($index)
     {
+
         unset($this->steps[$index]);
     }
     public function render()
     {
-        $object = MoveIn::all();
+        $cates = $this->cates;
+        $object = DB::table('move_ins')->where('bigtype', '=', $cates)->get();
         $bigtype = AssetCategory::all();
-        return view('livewire.borrow',compact('object', 'bigtype'));
+        return view('livewire.borrow', compact('object', 'bigtype'));
     }
 }

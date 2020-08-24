@@ -9,4 +9,8 @@ class AssetCategory extends Model
     protected $fillable = [
      'bigtype'
 ];
+public function borrowdetail()
+{
+    return $this->hasMany('App\Movein');
+}
 }

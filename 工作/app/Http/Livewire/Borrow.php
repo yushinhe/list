@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Borrow extends Component
 {
-    use AuthorizesRequests;
+   
     public $steps = [];
     public $cates;
 

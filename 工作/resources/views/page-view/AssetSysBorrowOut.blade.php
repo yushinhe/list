@@ -11,7 +11,7 @@
 <x-alert/>
         @foreach ($borrow as $b)
         
-        <a href="{{url('/asset-sys-borrow-out-2')}}/{{$b->id}}"
+        <a href="{{url('/asset-sys/borrow-out-2')}}/{{$b->id}}"
                 class="list-group-item list-group-item-action">
             
                 {{' 借用人:'. $b->person .'  ' . '借用時間:' . $b->borrowtime. '借用確認:' . $b->borrowed }}</a>

@@ -3,7 +3,7 @@
     <select class="custom-select " wire:model="cates" required>
         <option selected>Open this select menu</option>
         @foreach ($bigtype as $b)
-            <option wire:click="saveContact">{{ $b->bigtype }}</option>
+            <option>{{ $b->bigtype }}</option>
         @endforeach
     </select>
     <div class="d-flex my-1">
@@ -24,5 +24,6 @@
                 @endforeach
             </select>
         </div>
+
     @endforeach
 </div>

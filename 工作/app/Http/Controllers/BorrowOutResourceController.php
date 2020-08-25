@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\AssetCategory;
-use App\MoveIn;
 use Illuminate\Http\Request;
-
-class MoveInController extends Controller
+use App\Borrow;
+use App\AssetCategory;
+class BorrowOutResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class MoveInController extends Controller
      */
     public function index()
     {
-        $assetcategory = AssetCategory::all();
-        return view('page-view.AssetSysMoveIn', compact('assetcategory'));
+        $borrow = Borrow::all();
+        return view('page-view.AssetSysBorrowOut', compact('borrow'));
     }
 
     /**
@@ -37,9 +36,7 @@ class MoveInController extends Controller
      */
     public function store(Request $request)
     {
-        $movein = MoveIn::create($request->all());
-        $movein->save();
-        return redirect()->back()->with('message', '資料移交成功');
+        //
     }
 
     /**
@@ -50,7 +47,8 @@ class MoveInController extends Controller
      */
     public function show($id)
     {
-        //
+        $borrow = Borrow::find($id);
+        return view('page-view.AssetSysBorrowOut-2', compact('borrow'));
     }
 
     /**
@@ -73,7 +71,11 @@ class MoveInController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $borrow = Borrow::find($id);
+        $borrow->borrowed = $request->input('borrowed');
+        $borrow->borrowedcheck = $request->input('borrowedcheck');
+        $borrow->save();
+        return redirect('asset-sys/borrow-out')->with('message', '批准完成');
     }
 
     /**

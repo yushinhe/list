@@ -8,6 +8,8 @@
 
         <form class="p-3" method="POST">
             {{ csrf_field() }}
+            @method('PUT')
+            
             <div class="form-group">
                 <label for="formGroupExampleInput">存放位置</label>
                 <input type="text" class="form-control" id="formGroupExampleInput" value="{{ $list->position }}"

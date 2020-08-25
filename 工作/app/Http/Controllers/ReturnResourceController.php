@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\AssetCategory;
-use App\MoveIn;
+use App\Borrow;
+use App\User;
 use Illuminate\Http\Request;
 
-class MoveInController extends Controller
+class ReturnResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class MoveInController extends Controller
      */
     public function index()
     {
-        $assetcategory = AssetCategory::all();
-        return view('page-view.AssetSysMoveIn', compact('assetcategory'));
+        $borrows = auth()->user()->borrows;
+        return view('page-view.AssetSysReturn', compact('borrows'));
     }
 
     /**
@@ -37,9 +36,7 @@ class MoveInController extends Controller
      */
     public function store(Request $request)
     {
-        $movein = MoveIn::create($request->all());
-        $movein->save();
-        return redirect()->back()->with('message', '資料移交成功');
+        //
     }
 
     /**
@@ -50,7 +47,8 @@ class MoveInController extends Controller
      */
     public function show($id)
     {
-        //
+        $borrow = Borrow::find($id);
+        return view('page-view.AssetSysReturn-1', compact('borrow'));
     }
 
     /**
@@ -73,7 +71,10 @@ class MoveInController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $borrow = Borrow::find($id);
+        $borrow->senddated = $request->input('senddated');
+        $borrow->save();
+        return redirect('asset-sys-return')->with('message','歸還申請成功');
     }
 
     /**

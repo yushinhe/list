@@ -43,6 +43,7 @@
         </table>
         <form class="p-3" action="" method="POST">
             {{ csrf_field() }}
+            @method('PUT')
 
             <div class="form-group py-2">
                 <label for="formGroupExampleInput">入庫時間</label>

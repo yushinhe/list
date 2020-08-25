@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\AssetCategory;
-use App\MoveIn;
+use App\User;
+use App\Withdraw;
 use Illuminate\Http\Request;
 
-class MoveInController extends Controller
+class WithdrawCheckResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,8 @@ class MoveInController extends Controller
      */
     public function index()
     {
-        $assetcategory = AssetCategory::all();
-        return view('page-view.AssetSysMoveIn', compact('assetcategory'));
+        $withdraw = Withdraw::all();
+        return view('page-view.AssetSysWithdrawCheck', compact('withdraw'));
     }
 
     /**
@@ -37,9 +36,7 @@ class MoveInController extends Controller
      */
     public function store(Request $request)
     {
-        $movein = MoveIn::create($request->all());
-        $movein->save();
-        return redirect()->back()->with('message', '資料移交成功');
+        //
     }
 
     /**
@@ -50,7 +47,8 @@ class MoveInController extends Controller
      */
     public function show($id)
     {
-        //
+        $withdraw = Withdraw::find($id);
+        return view('page-view.AssetSysWithdrawCheck-1', compact('withdraw'));
     }
 
     /**
@@ -73,7 +71,11 @@ class MoveInController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $withdraw = Withdraw::find($id);
+        $withdraw->checked = $request->input('checked');
+        $withdraw->checkman = $request->input('checkman');
+        $withdraw->save();
+        return redirect('asset-sys/withdraw-check')->with('message', '批准成功');
     }
 
     /**

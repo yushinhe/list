@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Borrow;
 
-use App\AssetCategory;
-use App\MoveIn;
 use Illuminate\Http\Request;
 
-class MoveInController extends Controller
+class ReturnBackResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,9 @@ class MoveInController extends Controller
      */
     public function index()
     {
-        $assetcategory = AssetCategory::all();
-        return view('page-view.AssetSysMoveIn', compact('assetcategory'));
+        $borrow = Borrow::all();
+
+        return view('page-view.AssetSysReturnBack', compact('borrow'));
     }
 
     /**
@@ -37,9 +37,7 @@ class MoveInController extends Controller
      */
     public function store(Request $request)
     {
-        $movein = MoveIn::create($request->all());
-        $movein->save();
-        return redirect()->back()->with('message', '資料移交成功');
+     
     }
 
     /**
@@ -50,7 +48,8 @@ class MoveInController extends Controller
      */
     public function show($id)
     {
-        //
+        $borrow = Borrow::find($id);
+        return view('page-view.AssetSysReturnBack-2', compact('borrow'));
     }
 
     /**
@@ -73,7 +72,12 @@ class MoveInController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $borrow = Borrow::find($id);
+        $borrow->backtime = $request->input('backtime');
+        $borrow->status = $request->input('status');
+        $borrow->save();
+        return redirect('asset-sys/returnback');
+
     }
 
     /**

@@ -38,6 +38,7 @@
 
         <form class="p-3" action="" method="POST">
             {{ csrf_field() }}
+            @method('PUT')
 
             <label for="formGroupExampleInput">批示者</label>
             <input type="type" class="form-control" id="formGroupExampleInput" value="{{ Auth::user()->name }} "

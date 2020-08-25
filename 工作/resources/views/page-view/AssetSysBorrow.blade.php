@@ -20,7 +20,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">借用用途</span>
             </div>
-            <textarea class="form-control" aria-label="With textarea" name="way "required></textarea>
+            <textarea class="form-control" aria-label="With textarea" name="way" required></textarea>
         </div>
         <div class="form-group py-2">
             <label for="formGroupExampleInput">歸還日期</label>

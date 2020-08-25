@@ -48,7 +48,7 @@ class WithdrawResourceController extends Controller
             $withdraw->WithdrawDetail()->create(['object' => $step]);
         }
         $withdraw->save();
-        return redirect('asset-sys-withdraw')->with('message', '領用申請成功');
+        return redirect()->back()->with('message', '領用申請成功');
     }
 
     /**

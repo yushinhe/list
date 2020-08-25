@@ -34,7 +34,7 @@
    
     <form class="p-3" action="" method="POST">
         {{ csrf_field() }}
-
+        @method('PUT')
         <div class="form-group py-2">
             <label for="formGroupExampleInput">實際歸還日期</label>
             <input type="date" class="form-control" id="formGroupExampleInput" name="senddated">

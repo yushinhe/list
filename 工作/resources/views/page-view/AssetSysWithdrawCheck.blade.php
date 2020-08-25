@@ -2,6 +2,8 @@
 
 
 @section('content')
+{{ $withdraw->links() }}
+
     @if (Auth::user()->role)
         <h2>領用確認</h2>
         <p>領用明細</p>

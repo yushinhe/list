@@ -38,25 +38,34 @@
                     <th scope="row">實際歸還日期</th>
                     <td>{{ $borrow->senddated }}</td>
                 </tr>
-
+                <tr>
+                    <th scope="row">入庫時間</th>
+                    <td>{{ $borrow->backtime }}</td>
+                </tr>  <tr>
+                    <th scope="row">品項狀態</th>
+                    <td>{{ $borrow->status }}</td>
+                </tr>
             </tbody>
         </table>
-        <form class="p-3" action="" method="POST">
-            {{ csrf_field() }}
-            @method('PUT')
+        @if ($borrow->status == '')
 
-            <div class="form-group py-2">
-                <label for="formGroupExampleInput">入庫時間</label>
-                <input type="datetime-local" class="form-control" id="formGroupExampleInput" name="backtime">
-            </div>
-            <div class="form-group py-2">
-                <label for="formGroupExampleInput">品項狀態</label>
-                <textarea class="form-control" aria-label="With textarea" name="status"></textarea>
-            </div>
-            <div class="d-flex flex-row-reverse py-2">
-                <button class="btn btn-info" type="submit">歸還入庫</button>
-                <!-- <button class="btn btn-outline-danger mx-5" type="reset">重新填寫</button> -->
-            </div>
-        </form>
+            <form class="p-3" action="" method="POST">
+                {{ csrf_field() }}
+                @method('PUT')
+
+                <div class="form-group py-2">
+                    <label for="formGroupExampleInput">入庫時間</label>
+                    <input type="datetime-local" class="form-control" id="formGroupExampleInput" name="backtime">
+                </div>
+                <div class="form-group py-2">
+                    <label for="formGroupExampleInput">品項狀態</label>
+                    <textarea class="form-control" aria-label="With textarea" name="status"></textarea>
+                </div>
+                <div class="d-flex flex-row-reverse py-2">
+                    <button class="btn btn-info" type="submit">歸還入庫</button>
+                    <!-- <button class="btn btn-outline-danger mx-5" type="reset">重新填寫</button> -->
+                </div>
+            </form>
+        @endif
     @endif
 @endsection

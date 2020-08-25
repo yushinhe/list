@@ -3,6 +3,7 @@
 
 @section('content')
 @if (Auth::user()->role)
+{{ $borrow->links() }}
 
 
     <h2>資產借出</h2>

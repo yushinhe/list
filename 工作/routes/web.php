@@ -14,20 +14,22 @@ use Illuminate\Support\Facades\Route;
  */
 Route::middleware('auth')->group(function () {
 
-    Route::get('/asset-sys', function () {
-        return view('page-view/AssetSys');
-    });
     Route::post('/upload', 'UserController@uploadAvatar');
-    Route::resource('/asset-sys/asset', 'AssetResourceController');
-    Route::resource('/asset-sys/movein', 'MoveInController');
-    Route::resource('/asset-sys/withdraw', 'WithdrawResourceController');
-    Route::resource('/asset-sys/borrow', 'BorrowResourceController');
-    Route::resource('/asset-sys/borrow-out', 'BorrowOutResourceController');
-    Route::resource('/asset-sys/return', 'ReturnResourceController');
-    Route::resource('/asset-sys/returnback', 'ReturnBackResourceController');
-    Route::resource('/asset-sys/withdraw-check', 'WithdrawCheckResourceController');
-    Route::get('/asset-sys/withdraw-status', 'WithdrawStatusController@index');
-  });
+    Route::group(['prefix' => 'asset-sys'], function () {
+        Route::get('index', function () {
+            return view('page-view/AssetSys');
+        });
+        Route::resource('asset', 'AssetResourceController');
+        Route::resource('movein', 'MoveInController');
+        Route::resource('withdraw', 'WithdrawResourceController');
+        Route::resource('borrow', 'BorrowResourceController');
+        Route::resource('borrow-out', 'BorrowOutResourceController');
+        Route::resource('return', 'ReturnResourceController');
+        Route::resource('returnback', 'ReturnBackResourceController');
+        Route::resource('withdraw-check', 'WithdrawCheckResourceController');
+        Route::get('withdraw-status', 'WithdrawStatusController@index');
+    });
+});
 
 Auth::routes();
 Route::get('/', function () {

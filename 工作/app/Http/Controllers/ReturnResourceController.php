@@ -74,7 +74,7 @@ class ReturnResourceController extends Controller
         $borrow = Borrow::find($id);
         $borrow->senddated = $request->input('senddated');
         $borrow->save();
-        return redirect('asset-sys-return')->with('message','歸還申請成功');
+        return redirect('asset-sys/return')->with('message','歸還申請成功');
     }
 
     /**

@@ -14,7 +14,7 @@ class WithdrawCheckResourceController extends Controller
      */
     public function index()
     {
-        $withdraw = Withdraw::all();
+        $withdraw = Withdraw::paginate(15);
         return view('page-view.AssetSysWithdrawCheck', compact('withdraw'));
     }
 

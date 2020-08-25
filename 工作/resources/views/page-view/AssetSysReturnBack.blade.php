@@ -2,7 +2,8 @@
 
 
 @section('content')
-    @if (Auth::user()->role)
+@if (Auth::user()->role)
+{{ $borrow->links() }}
 
         <h2>歸還入庫</h2>
         <p>歸還明細</p>

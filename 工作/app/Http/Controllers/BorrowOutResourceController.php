@@ -14,7 +14,7 @@ class BorrowOutResourceController extends Controller
      */
     public function index()
     {
-        $borrow = Borrow::all();
+        $borrow = Borrow::paginate(12);
         return view('page-view.AssetSysBorrowOut', compact('borrow'));
     }
 

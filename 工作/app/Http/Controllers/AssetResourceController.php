@@ -48,11 +48,11 @@ class AssetResourceController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $list =Movein::find($id);
-  
-     return view('page-view.AssetSysAsset-detail',compact('list'));   
+        $list = Movein::find($id);
+        $bigtype = AssetCategory::all();
+        return view('page-view.AssetSysAsset-edit', compact('list', 'bigtype'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -61,9 +61,9 @@ class AssetResourceController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $list = Movein::find($id);
-        $bigtype = AssetCategory::all();
-        return view('page-view.AssetSysAsset-edit', compact('list', 'bigtype'));
+        $list =Movein::find($id);
+    
+     return view('page-view.AssetSysAsset-detail',compact('list'));   
     }
 
     /**
@@ -82,7 +82,7 @@ class AssetResourceController extends Controller
         $movein->bigtype = $request->input('bigtype');
         $movein->object = $request->input('object');
         $movein->save();
-        return redirect('/asset-sys-asset')->with('message', '修改完成');
+        return redirect('/asset-sys/asset')->with('message', '修改完成');
     }
 
     /**

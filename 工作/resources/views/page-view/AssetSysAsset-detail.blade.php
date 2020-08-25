@@ -37,7 +37,7 @@
             </tbody>
             
         </table>
-     <button class="btn btn-info " type="button"><a class="text-white" href="{{'/asset-sys-asset/'}}">back</a> </button>
+     <button class="btn btn-info " type="button"><a class="text-white" href="{{route('asset.index')}}">back</a> </button>
 
     @endif
 @endsection

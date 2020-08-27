@@ -3,7 +3,7 @@
     <div class="list-group">
         @foreach ($book as $b)
             <div class="d-flex list-group-item list-group-item-action">
-                {{ '品項編號:' . $b->number . '  品項名稱:' . $b->object }}
+                {{ '品項編號:' . $b->number . '  品項名稱:' . $b->object . '  期號:' . $b->issue }}
                 <a class="px-2" href="{{ '/asset-sys-asset/' . $b->id . '/detail' }}">詳細資料</a>
                 @if (Auth::user()->role == 'controller')
                     <a class="px-2 " href="{{ '/asset-sys-asset/' . $b->id . '/edit' }}"><span

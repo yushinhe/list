@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Asset;
 
+use App\Http\Controllers\Controller;
+use App\Withdraw;
 use Illuminate\Http\Request;
-use App\Borrow;
-use App\AssetCategory;
-class BorrowResourceController extends Controller
+
+class WithdrawCheckResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class BorrowResourceController extends Controller
      */
     public function index()
     {
-        $bigtype = AssetCategory::all();
-        return view('page-view.AssetSysBorrow');
+        $withdraw = Withdraw::paginate(15);
+        return view('page-view.AssetSysWithdrawCheck', compact('withdraw'));
     }
 
     /**
@@ -36,15 +37,7 @@ class BorrowResourceController extends Controller
      */
     public function store(Request $request)
     {
-        $borrow = Borrow::create($request->all());
-        $borrow->user_id = auth()->user()->id;
-        foreach ($request->steps as $step) {
-            $borrow->BorrowDetail()->create(['object' => $step]);
-        }
-        $borrow->save();
-
-        return redirect()->back()->with('message', '借出成功');
-
+        //
     }
 
     /**
@@ -55,7 +48,8 @@ class BorrowResourceController extends Controller
      */
     public function show($id)
     {
-        //
+        $withdraw = Withdraw::find($id);
+        return view('page-view.AssetSysWithdrawCheck-1', compact('withdraw'));
     }
 
     /**
@@ -78,7 +72,11 @@ class BorrowResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $withdraw = Withdraw::find($id);
+        $withdraw->checked = $request->input('checked');
+        $withdraw->checkman = $request->input('checkman');
+        $withdraw->save();
+        return redirect('asset-sys/withdraw-check')->with('message', '批准成功');
     }
 
     /**

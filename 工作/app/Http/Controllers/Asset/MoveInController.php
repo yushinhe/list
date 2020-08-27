@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Asset;
 
 use App\AssetCategory;
+use App\Http\Controllers\Controller;
 use App\MoveIn;
 use Illuminate\Http\Request;
 
-class AssetResourceController extends Controller
+class MoveInController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class AssetResourceController extends Controller
      */
     public function index()
     {
-        $assetCategory = AssetCategory::all();
-        return view('page-view.AssetSysAsset');
+        $assetcategory = AssetCategory::all();
+        return view('page-view.AssetSysMoveIn', compact('assetcategory'));
     }
 
     /**
@@ -37,7 +38,9 @@ class AssetResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $movein = MoveIn::create($request->all());
+        $movein->save();
+        return redirect()->back()->with('message', '資料移交成功');
     }
 
     /**
@@ -46,24 +49,20 @@ class AssetResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        $list = Movein::find($id);
-        $bigtype = AssetCategory::all();
-        return view('page-view.AssetSysAsset-edit', compact('list', 'bigtype'));
+        //
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
-        $list =Movein::find($id);
-    
-     return view('page-view.AssetSysAsset-detail',compact('list'));   
+        //
     }
 
     /**
@@ -75,14 +74,7 @@ class AssetResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $movein = Movein::find($id);
-        $movein->position = $request->input('position');
-        $movein->date = $request->input('date');
-        $movein->brand = $request->input('brand');
-        $movein->bigtype = $request->input('bigtype');
-        $movein->object = $request->input('object');
-        $movein->save();
-        return redirect('/asset-sys/asset')->with('message', '修改完成');
+        //
     }
 
     /**
@@ -91,10 +83,8 @@ class AssetResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MoveIn $movein,$id)
+    public function destroy($id)
     {
-        $movein=Movein::find($id);
-        $movein->delete();
-        return redirect()->back()->with('message', '刪除成功');
+        //
     }
 }

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
 
     Route::post('/upload', 'UserController@uploadAvatar');
-    Route::group(['prefix' => 'asset-sys'], function () {
+    Route::group(['prefix' => 'asset-sys', 'namespace' => 'Asset'], function () {
         Route::get('index', function () {
             return view('page-view/AssetSys');
         });
@@ -29,11 +29,12 @@ Route::middleware('auth')->group(function () {
         Route::resource('withdraw-check', 'WithdrawCheckResourceController');
         Route::get('withdraw-status', 'WithdrawStatusController@index');
     });
-    Route::group(['prefix' => 'books'], function () {
+    Route::group(['prefix' => 'books', 'namespace' => 'Book'], function () {
         Route::get('index', function () {
             return view('book/index');
         });
-      Route::resource('asset', 'BookAssetResourceController');       
+        Route::resource('movein', 'BookInsertResourceController');
+        Route::resource('list', 'BookListResourceController');
     });
 });
 

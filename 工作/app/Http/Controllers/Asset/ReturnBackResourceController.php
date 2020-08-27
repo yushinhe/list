@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Asset;
+
 use App\Borrow;
-use App\User;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ReturnResourceController extends Controller
+class ReturnBackResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,9 @@ class ReturnResourceController extends Controller
      */
     public function index()
     {
-        $borrows = auth()->user()->borrows;
-        return view('page-view.AssetSysReturn', compact('borrows'));
+        $borrow = Borrow::paginate(12);
+
+        return view('page-view.AssetSysReturnBack', compact('borrow'));
     }
 
     /**
@@ -36,7 +38,7 @@ class ReturnResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -48,7 +50,7 @@ class ReturnResourceController extends Controller
     public function show($id)
     {
         $borrow = Borrow::find($id);
-        return view('page-view.AssetSysReturn-1', compact('borrow'));
+        return view('page-view.AssetSysReturnBack-2', compact('borrow'));
     }
 
     /**
@@ -72,9 +74,11 @@ class ReturnResourceController extends Controller
     public function update(Request $request, $id)
     {
         $borrow = Borrow::find($id);
-        $borrow->senddated = $request->input('senddated');
+        $borrow->backtime = $request->input('backtime');
+        $borrow->status = $request->input('status');
         $borrow->save();
-        return redirect('asset-sys/return')->with('message','歸還申請成功');
+        return redirect('asset-sys/returnback');
+
     }
 
     /**

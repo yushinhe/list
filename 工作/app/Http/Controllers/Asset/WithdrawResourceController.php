@@ -1,12 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Asset;
 
 use App\AssetCategory;
+use App\Http\Controllers\Controller;
 use App\MoveIn;
+use App\User;
+use App\Withdraw;
+use App\WithdrawDetail;
 use Illuminate\Http\Request;
 
-class MoveInController extends Controller
+class WithdrawResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +19,10 @@ class MoveInController extends Controller
      */
     public function index()
     {
-        $assetcategory = AssetCategory::all();
-        return view('page-view.AssetSysMoveIn', compact('assetcategory'));
+        $object = MoveIn::all();
+        $bigtype = AssetCategory::all();
+        return view('page-view.AssetSysWithdraw', compact('object', 'bigtype'));
+
     }
 
     /**
@@ -35,11 +41,15 @@ class MoveInController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, WithdrawDetail $withdrawdetail)
     {
-        $movein = MoveIn::create($request->all());
-        $movein->save();
-        return redirect()->back()->with('message', '資料移交成功');
+        $withdraw = Withdraw::create($request->all());
+        $withdraw->user_id = auth()->user()->id;
+        foreach ($request->steps as $step) {
+            $withdraw->WithdrawDetail()->create(['object' => $step]);
+        }
+        $withdraw->save();
+        return redirect()->back()->with('message', '領用申請成功');
     }
 
     /**

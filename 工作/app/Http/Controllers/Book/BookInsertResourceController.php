@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Book;
+use App\Http\Controllers\Controller;
+
+use App\Bookmovein;
+use App\Book_Category;
 
 use Illuminate\Http\Request;
-use App\Bookmovein;
-class BookAssetResourceController extends Controller
+
+class BookInsertResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +17,8 @@ class BookAssetResourceController extends Controller
      */
     public function index()
     {
-        $book=Bookmovein::all();
-        return view('book.Asset',compact('book'));
+        $bookcategory = Book_Category::all();
+        return view('book.MoveIn', compact('bookcategory'));
     }
 
     /**
@@ -35,7 +39,9 @@ class BookAssetResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $movein = Bookmovein::create($request->all());
+        $movein->save();
+        return redirect()->back()->with('message', '書籍新增成功');
     }
 
     /**

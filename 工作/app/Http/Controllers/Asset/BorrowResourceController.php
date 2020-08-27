@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Asset;
 
-use Illuminate\Http\Request;
-use App\Borrow;
 use App\AssetCategory;
-class BorrowOutResourceController extends Controller
+use App\Borrow;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class BorrowResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,8 @@ class BorrowOutResourceController extends Controller
      */
     public function index()
     {
-        $borrow = Borrow::paginate(12);
-        return view('page-view.AssetSysBorrowOut', compact('borrow'));
+        $bigtype = AssetCategory::all();
+        return view('page-view.AssetSysBorrow');
     }
 
     /**
@@ -36,7 +38,15 @@ class BorrowOutResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $borrow = Borrow::create($request->all());
+        $borrow->user_id = auth()->user()->id;
+        foreach ($request->steps as $step) {
+            $borrow->BorrowDetail()->create(['object' => $step]);
+        }
+        $borrow->save();
+
+        return redirect()->back()->with('message', '借出成功');
+
     }
 
     /**
@@ -47,8 +57,7 @@ class BorrowOutResourceController extends Controller
      */
     public function show($id)
     {
-        $borrow = Borrow::find($id);
-        return view('page-view.AssetSysBorrowOut-2', compact('borrow'));
+        //
     }
 
     /**
@@ -71,11 +80,7 @@ class BorrowOutResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $borrow = Borrow::find($id);
-        $borrow->borrowed = $request->input('borrowed');
-        $borrow->borrowedcheck = $request->input('borrowedcheck');
-        $borrow->save();
-        return redirect('asset-sys/borrow-out')->with('message', '批准完成');
+        //
     }
 
     /**

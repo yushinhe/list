@@ -14,8 +14,7 @@ class Booksearch extends Component
         $search = '%' . $this->search . '%';
         $book = Bookmovein::where('object', 'like', $search
         )->orWhere(function ($query) {
-        $search = '%' . $this->search . '%';
-            
+            $search = '%' . $this->search . '%';
             $query->where('issue', 'like', $search)
                 ->orWhere('number', 'like', $search);
         })->get();

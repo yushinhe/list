@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Asset;
 
-use App\AssetCategory;
-use App\MoveIn;
+use App\Borrow;
+use App\Http\Controllers\Controller;
 use App\User;
-use App\Withdraw;
-use App\WithdrawDetail;
 use Illuminate\Http\Request;
 
-class WithdrawResourceController extends Controller
+class ReturnResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +16,8 @@ class WithdrawResourceController extends Controller
      */
     public function index()
     {
-        $object = MoveIn::all();
-        $bigtype = AssetCategory::all();
-        return view('page-view.AssetSysWithdraw', compact('object', 'bigtype'));
-        
+        $borrows = auth()->user()->borrows;
+        return view('page-view.AssetSysReturn', compact('borrows'));
     }
 
     /**
@@ -40,15 +36,9 @@ class WithdrawResourceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, WithdrawDetail $withdrawdetail)
+    public function store(Request $request)
     {
-        $withdraw = Withdraw::create($request->all());
-        $withdraw->user_id = auth()->user()->id;
-        foreach ($request->steps as $step) {
-            $withdraw->WithdrawDetail()->create(['object' => $step]);
-        }
-        $withdraw->save();
-        return redirect()->back()->with('message', '領用申請成功');
+        //
     }
 
     /**
@@ -59,7 +49,8 @@ class WithdrawResourceController extends Controller
      */
     public function show($id)
     {
-        //
+        $borrow = Borrow::find($id);
+        return view('page-view.AssetSysReturn-1', compact('borrow'));
     }
 
     /**
@@ -82,7 +73,10 @@ class WithdrawResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $borrow = Borrow::find($id);
+        $borrow->senddated = $request->input('senddated');
+        $borrow->save();
+        return redirect('asset-sys/return')->with('message', '歸還申請成功');
     }
 
     /**

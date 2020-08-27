@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Borrow;
+namespace App\Http\Controllers\Asset;
 
+use App\AssetCategory;
+use App\Http\Controllers\Controller;
+use App\MoveIn;
 use Illuminate\Http\Request;
 
-class ReturnBackResourceController extends Controller
+class AssetResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +16,8 @@ class ReturnBackResourceController extends Controller
      */
     public function index()
     {
-        $borrow = Borrow::paginate(12);
-
-        return view('page-view.AssetSysReturnBack', compact('borrow'));
+        $assetCategory = AssetCategory::all();
+        return view('page-view.AssetSysAsset');
     }
 
     /**
@@ -37,7 +38,7 @@ class ReturnBackResourceController extends Controller
      */
     public function store(Request $request)
     {
-     
+        //
     }
 
     /**
@@ -46,10 +47,11 @@ class ReturnBackResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        $borrow = Borrow::find($id);
-        return view('page-view.AssetSysReturnBack-2', compact('borrow'));
+        $list = Movein::find($id);
+        $bigtype = AssetCategory::all();
+        return view('page-view.AssetSysAsset-edit', compact('list', 'bigtype'));
     }
 
     /**
@@ -58,9 +60,11 @@ class ReturnBackResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $list = Movein::find($id);
+
+        return view('page-view.AssetSysAsset-detail', compact('list'));
     }
 
     /**
@@ -72,12 +76,14 @@ class ReturnBackResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $borrow = Borrow::find($id);
-        $borrow->backtime = $request->input('backtime');
-        $borrow->status = $request->input('status');
-        $borrow->save();
-        return redirect('asset-sys/returnback');
-
+        $movein = Movein::find($id);
+        $movein->position = $request->input('position');
+        $movein->date = $request->input('date');
+        $movein->brand = $request->input('brand');
+        $movein->bigtype = $request->input('bigtype');
+        $movein->object = $request->input('object');
+        $movein->save();
+        return redirect('/asset-sys/asset')->with('message', '修改完成');
     }
 
     /**
@@ -86,8 +92,10 @@ class ReturnBackResourceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(MoveIn $movein, $id)
     {
-        //
+        $movein = Movein::find($id);
+        $movein->delete();
+        return redirect()->back()->with('message', '刪除成功');
     }
 }

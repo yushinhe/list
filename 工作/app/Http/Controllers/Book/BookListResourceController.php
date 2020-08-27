@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\User;
-use App\Withdraw;
+namespace App\Http\Controllers\Book;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-class WithdrawCheckResourceController extends Controller
+use App\Bookmovein;
+use App\Book_Category;
+class BookListResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class WithdrawCheckResourceController extends Controller
      */
     public function index()
     {
-        $withdraw = Withdraw::paginate(15);
-        return view('page-view.AssetSysWithdrawCheck', compact('withdraw'));
+        $book=Bookmovein::all();
+        return view('book.List',compact('book'));
     }
 
     /**
@@ -47,8 +47,9 @@ class WithdrawCheckResourceController extends Controller
      */
     public function show($id)
     {
-        $withdraw = Withdraw::find($id);
-        return view('page-view.AssetSysWithdrawCheck-1', compact('withdraw'));
+        $book =Bookmovein::find($id); 
+        $type =Book_Category::all();
+        return view('book.ListEdit', compact('book','type'));
     }
 
     /**
@@ -59,7 +60,9 @@ class WithdrawCheckResourceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book =Bookmovein::find($id);
+    
+        return view('book.ListDetail',compact('book'));   
     }
 
     /**
@@ -71,11 +74,14 @@ class WithdrawCheckResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $withdraw = Withdraw::find($id);
-        $withdraw->checked = $request->input('checked');
-        $withdraw->checkman = $request->input('checkman');
-        $withdraw->save();
-        return redirect('asset-sys/withdraw-check')->with('message', '批准成功');
+        $book =Bookmovein::find($id);
+        $book->position = $request->input('position');
+        $book->date = $request->input('date');
+        $book->brand = $request->input('brand');
+        $book->bigtype = $request->input('bigtype');
+        $book->object = $request->input('object');
+        $book->save();
+        return redirect('/books/asset')->with('message', '修改完成');
     }
 
     /**
@@ -86,6 +92,8 @@ class WithdrawCheckResourceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book=Bookmovein::find($id);
+        $book->delete();
+        return redirect()->back()->with('message', '刪除成功');
     }
 }

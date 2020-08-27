@@ -65,7 +65,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                                                 document.getElementById('logout-form').submit();">
+                                                                                     document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
@@ -81,37 +81,10 @@
         <div class="content d-flex">
             <div class="sidebar p-3 bg-light animated slideInLeft">
                 <ul class="list-group p-2 list-unstyled">
-                    @if (Auth::user()->role == 'controller')
-                        <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
-                                href=" {{ url('/asset-sys/movein') }} ">資產移交</a>
-                        </li>
-                    @endif
-                    <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
-                            href="{{ url('/asset-sys/withdraw') }}">資產領用</a>
+
+                    <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
+                            href="{{ url('/books/asset') }}">書籍列表</a>
                     </li>
-                    <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
-                            href="{{ url('/asset-sys/borrow') }}">資產借用</a>
-                    </li>
-                    <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
-                            href="{{ url('/asset-sys/withdraw-status') }}">領用狀態</a>
-                    </li>
-                    <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
-                            href="{{ url('/asset-sys/return') }}">資產歸還</a>
-                    </li>
-                    @if (Auth::user()->role)
-                        <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
-                                href="{{ url('/asset-sys/withdraw-check') }}">領用確認</a>
-                        </li>
-                        <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
-                                href="{{ url('/asset-sys/borrow-out') }}">資產借出</a>
-                        </li>
-                        <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
-                                href="{{ url('/asset-sys/returnback') }}">歸還入庫</a>
-                        </li>
-                        <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
-                                href="{{ url('/asset-sys/asset') }}">資產列表</a>
-                        </li>
-                    @endif
 
                 </ul>
             </div>

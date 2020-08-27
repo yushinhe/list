@@ -29,6 +29,12 @@ Route::middleware('auth')->group(function () {
         Route::resource('withdraw-check', 'WithdrawCheckResourceController');
         Route::get('withdraw-status', 'WithdrawStatusController@index');
     });
+    Route::group(['prefix' => 'books'], function () {
+        Route::get('index', function () {
+            return view('book/index');
+        });
+      Route::resource('asset', 'BookAssetResourceController');       
+    });
 });
 
 Auth::routes();

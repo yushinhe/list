@@ -1,6 +1,7 @@
 @extends('layouts.Book')
 @section('content')
-@if (Auth::user()->role)
+@if (Auth::user()->BookController)
+
 
     <h2>圖書列表</h2>
     <x-alert />

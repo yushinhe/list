@@ -1,6 +1,7 @@
 @extends('layouts.AssetSys')
 @section('content')
-@if (Auth::user()->role)
+@if (Auth::user()->AssetController)
+
 
     <h2>資產列表</h2>
     <x-alert />

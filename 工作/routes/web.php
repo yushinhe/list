@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
         });
         Route::resource('movein', 'BookInsertResourceController');
         Route::resource('list', 'BookListResourceController');
+        Route::resource('withdraw', 'WithdrawResourceController');
+
     });
 });
 

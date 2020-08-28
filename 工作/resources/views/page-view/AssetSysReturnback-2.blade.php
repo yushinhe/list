@@ -2,7 +2,8 @@
 
 
 @section('content')
-    @if (Auth::user()->role)
+    @if (Auth::user()->AssetController)
+
 
         <h2>歸還入庫</h2>
         <table class="table table-hover table-bordered">
@@ -41,7 +42,8 @@
                 <tr>
                     <th scope="row">入庫時間</th>
                     <td>{{ $borrow->backtime }}</td>
-                </tr>  <tr>
+                </tr>
+                <tr>
                     <th scope="row">品項狀態</th>
                     <td>{{ $borrow->status }}</td>
                 </tr>

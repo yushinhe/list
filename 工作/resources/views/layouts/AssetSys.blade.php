@@ -81,7 +81,7 @@
         <div class="content d-flex">
             <div class="sidebar p-3 bg-light animated slideInLeft">
                 <ul class="list-group p-2 list-unstyled">
-                    @if (Auth::user()->role == 'controller')
+                    @if (Auth::user()->AssetController == 'controller')
                         <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
                                 href=" {{ url('/asset-sys/movein') }} ">資產移交</a>
                         </li>
@@ -98,7 +98,7 @@
                     <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
                             href="{{ url('/asset-sys/return') }}">資產歸還</a>
                     </li>
-                    @if (Auth::user()->role)
+                    @if (Auth::user()->AssetController)
                         <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
                                 href="{{ url('/asset-sys/withdraw-check') }}">領用確認</a>
                         </li>

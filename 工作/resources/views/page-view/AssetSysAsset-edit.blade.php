@@ -1,7 +1,8 @@
 @extends('layouts.AssetSys')
 
 @section('content')
-    @if (Auth::user()->role)
+@if (Auth::user()->AssetController)
+
 
         <h2>修改資產資料</h2>
         <h4>資產名稱:{{ $list->object }}</h4>

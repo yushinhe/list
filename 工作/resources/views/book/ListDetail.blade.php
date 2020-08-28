@@ -1,9 +1,10 @@
 @extends('layouts.Book')
 
 @section('content')
-    @if (Auth::user()->role)
+@if (Auth::user()->BookController)
 
-        <h2>雜誌詳細資料</h2>
+
+        <h2>圖書詳細資料</h2>
 
         <table class="table table-hover table-bordered">
             <thead>

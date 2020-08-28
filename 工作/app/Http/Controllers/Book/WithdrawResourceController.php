@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Book;
-use App\Http\Controllers\Controller;
 
-use App\Bookmovein;
 use App\Book_Category;
-
+use App\Http\Controllers\Controller;
+use App\Bookmovein;
+use App\User;
+use App\BookWithdraw;
+use App\BookWithdrawsDetails;
 use Illuminate\Http\Request;
 
-class BookInsertResourceController extends Controller
+class WithdrawResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +19,10 @@ class BookInsertResourceController extends Controller
      */
     public function index()
     {
-        $bookcategory = Book_Category::all();
-        return view('book.Insert', compact('bookcategory'));
+        $object = Bookmovein::all();
+        // $type = Book_Category::all();
+        return view('book.Withdraw', compact('object'));
+
     }
 
     /**
@@ -39,9 +43,13 @@ class BookInsertResourceController extends Controller
      */
     public function store(Request $request)
     {
-        $movein = Bookmovein::create($request->all());
-        $movein->save();
-        return redirect()->back()->with('message', '書籍新增成功');
+        $withdraw = BookWithdraw::create($request->all());
+        $withdraw->user_id = auth()->user()->id;
+        foreach ($request->steps as $step) {
+            $withdraw->BookWithdrawsDetails()->create(['object' => $step]);
+        }
+        $withdraw->save();
+        return redirect()->back()->with('message', '領用申請成功');
     }
 
     /**

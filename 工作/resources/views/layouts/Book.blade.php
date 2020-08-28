@@ -65,7 +65,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                                                     document.getElementById('logout-form').submit();">
+                                                                                                         document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
@@ -82,11 +82,18 @@
             <div class="sidebar p-3 bg-light animated slideInLeft">
                 <ul class="list-group p-2 list-unstyled">
                     <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
-                        href="{{ url('/books/movein') }}">移入書籍</a>
+                        href="{{ url('/books/withdraw') }}">書籍領用</a>
                 </li>
-                    <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
-                            href="{{ url('/books/list') }}">書籍列表</a>
-                    </li>
+                    @if (Auth::user()->BookController)
+
+                        <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
+                                href="{{ url('/books/list') }}">書籍列表</a>
+                        </li>
+                        <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
+                                href="{{ url('/books/movein') }}">移入書籍</a>
+                        </li>
+                    @endif
+
 
                 </ul>
             </div>

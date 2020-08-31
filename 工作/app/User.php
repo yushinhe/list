@@ -43,6 +43,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Withdraw');
     }
+    public function book_withdraws()
+    {
+        return $this->hasMany('App\BookWithdraw');
+    }
+    public function book_borrows()
+    {
+        return $this->hasMany('App\BookBorrow');
+    }
     public static function uploadAvatar($image)
     {
         $filename = $image->getClientOriginalName();

@@ -1,7 +1,7 @@
 @extends('layouts.Book')
 @section('content')
     <x-alert />
-    <h2>資產領用</h2>
+    <h2>書籍領用</h2>
     <form class="p-3" method="POST">
         {{ csrf_field() }}
         @livewire('bookwithdraw')

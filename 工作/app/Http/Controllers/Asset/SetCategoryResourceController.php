@@ -1,29 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Book;
-
-use App\Book_Category;
+namespace App\Http\Controllers\Asset;
 use App\Http\Controllers\Controller;
-use App\Bookmovein;
-use App\User;
-use App\BookWithdraw;
-use App\BookWithdrawsDetails;
-use Illuminate\Http\Request;
 
-class WithdrawResourceController extends Controller
- {
+use Illuminate\Http\Request;
+use App\AssetCategory;
+
+class SetCategoryResourceController extends Controller {
     /**
     * Display a listing of the resource.
     *
     * @return \Illuminate\Http\Response
     */
 
-    public function index()
- {
-        $object = Bookmovein::all();
-        // $type = Book_Category::all();
-        return view( 'book.Withdraw', compact( 'object' ) );
-
+    public function index() {
+        $bigtype = AssetCategory::all();       
+        return view('page-view.AssetSysSetCategory', compact('bigtype' ) );
     }
 
     /**
@@ -32,8 +24,7 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function create()
- {
+    public function create() {
         //
     }
 
@@ -44,15 +35,10 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function store( Request $request )
- {
-        $withdraw = BookWithdraw::create( $request->all() );
-        $withdraw->user_id = auth()->user()->id;
-        foreach ( $request->steps as $step ) {
-            $withdraw->BookWithdrawsDetails()->create( ['object' => $step] );
-        }
-        $withdraw->save();
-        return redirect()->back()->with( 'message', '借用申請成功' );
+    public function store( Request $request ) {
+        $bigtype = AssetCategory::create( $request->all() );
+        $bigtype->save();
+        return redirect()->back()->with( 'message', '類別新增成功' );
     }
 
     /**
@@ -62,8 +48,7 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function show( $id )
- {
+    public function show( $id ) {
         //
     }
 
@@ -74,8 +59,7 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function edit( $id )
- {
+    public function edit( $id ) {
         //
     }
 
@@ -87,8 +71,7 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function update( Request $request, $id )
- {
+    public function update( Request $request, $id ) {
         //
     }
 
@@ -99,8 +82,9 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function destroy( $id )
- {
-        //
+    public function destroy( $id ) {
+        $bigtype  =  AssetCategory::find($id);
+        $bigtype ->delete();
+        return redirect()->back()->with('message', '刪除成功');
     }
 }

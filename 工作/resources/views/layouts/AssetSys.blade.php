@@ -85,6 +85,9 @@
                         <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
                                 href=" {{ url('/asset-sys/movein') }} ">資產移交</a>
                         </li>
+                        <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
+                            href=" {{ url('/asset-sys/setcategory') }} ">類項管理</a>
+                    </li>
                     @endif
                     <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
                             href="{{ url('/asset-sys/withdraw') }}">資產領用</a>

@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('returnback', 'ReturnBackResourceController');
         Route::resource('withdraw-check', 'WithdrawCheckResourceController');
         Route::get('withdraw-status', 'WithdrawStatusController@index');
+        Route::resource('setcategory', 'SetCategoryResourceController');
     });
     Route::group(['prefix' => 'books', 'namespace' => 'Book'], function () {
         Route::get('index', function () {
@@ -36,10 +37,13 @@ Route::middleware('auth')->group(function () {
         Route::resource('movein', 'BookInsertResourceController');
         Route::resource('list', 'BookListResourceController');
         Route::resource('withdraw', 'WithdrawResourceController');
+        Route::resource('withdraw-check', 'WithdrawCheckResourceController');
+        Route::get('withdraw-status', 'WithdrawStatusController@index');
+        Route::resource('borrow', 'BorrowResourceController');
+        Route::resource('return', 'ReturnResourceController');
 
     });
 });
-
 Auth::routes();
 Route::get('/', function () {
     return view('welcome');

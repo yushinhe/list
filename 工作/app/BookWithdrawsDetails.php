@@ -6,8 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class BookWithdrawsDetails extends Model
 {
-    protected $fillable =['object','withdraw_id'];
-    public function user(){
-      return $this->belongsTo('App\BookWithdraw');
-  }
-}
+ protected $fillable =['object','book_withdraw_id'];
+ }

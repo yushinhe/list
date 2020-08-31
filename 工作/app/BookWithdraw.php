@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class BookWithdraw extends Model
 {
     protected $fillable = [
-        'user_id', 'type', 'object','person','time', 'way','checked','checkman'
+        'user_id', 'person','time', 'way','checked','checkman'
      ];
      public function user(){
          return $this->belongsTo('App\User');
      }
-     public function borrowdetail()
+     public function BookWithdrawsDetails()
      {
          return $this->hasMany('App\BookWithdrawsDetails');
      }

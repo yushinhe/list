@@ -1,29 +1,21 @@
 <?php
 
 namespace App\Http\Controllers\Book;
-
-use App\Book_Category;
 use App\Http\Controllers\Controller;
-use App\Bookmovein;
-use App\User;
-use App\BookWithdraw;
-use App\BookWithdrawsDetails;
-use Illuminate\Http\Request;
 
-class WithdrawResourceController extends Controller
- {
+use Illuminate\Http\Request;
+use App\BookWithdraw;
+
+class WithdrawCheckResourceController extends Controller {
     /**
     * Display a listing of the resource.
     *
     * @return \Illuminate\Http\Response
     */
 
-    public function index()
- {
-        $object = Bookmovein::all();
-        // $type = Book_Category::all();
-        return view( 'book.Withdraw', compact( 'object' ) );
-
+    public function index() {
+        $withdraw = BookWithdraw::paginate( 15 );
+        return view( 'book.WithdrawCheck', compact( 'withdraw' ) );
     }
 
     /**
@@ -32,8 +24,7 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function create()
- {
+    public function create() {
         //
     }
 
@@ -44,15 +35,8 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function store( Request $request )
- {
-        $withdraw = BookWithdraw::create( $request->all() );
-        $withdraw->user_id = auth()->user()->id;
-        foreach ( $request->steps as $step ) {
-            $withdraw->BookWithdrawsDetails()->create( ['object' => $step] );
-        }
-        $withdraw->save();
-        return redirect()->back()->with( 'message', '借用申請成功' );
+    public function store( Request $request ) {
+
     }
 
     /**
@@ -62,9 +46,10 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function show( $id )
- {
-        //
+    public function show( $id ) {
+        $withdraw = BookWithdraw::find( $id );
+        return view( 'book.WithdrawCheck-1', compact( 'withdraw' ) );
+
     }
 
     /**
@@ -74,8 +59,7 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function edit( $id )
- {
+    public function edit( $id ) {
         //
     }
 
@@ -87,9 +71,12 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function update( Request $request, $id )
- {
-        //
+    public function update( Request $request, $id ) {
+        $withdraw = BookWithdraw::find( $id );
+        $withdraw->checked = $request->input( 'checked' );
+        $withdraw->checkman = $request->input( 'checkman' );
+        $withdraw->save();
+        return redirect( 'books/withdraw-check' )->with( 'message', '批准成功' );
     }
 
     /**
@@ -99,8 +86,7 @@ class WithdrawResourceController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function destroy( $id )
- {
+    public function destroy( $id ) {
         //
     }
 }

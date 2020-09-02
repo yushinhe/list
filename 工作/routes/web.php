@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
         Route::get('withdraw-status', 'WithdrawStatusController@index');
         Route::resource('borrow', 'BorrowResourceController');
         Route::resource('return', 'ReturnResourceController');
-
+        Route::resource('borrow-out', 'BorrowOutResourceController');
     });
 });
 Auth::routes();

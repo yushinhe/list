@@ -98,6 +98,9 @@
                                 href="{{ url('/books/withdraw-check') }}">領用確認</a>
                         </li>
                         <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
+                            href="{{ url('/books/borrow-out') }}">借用確認</a>
+                    </li>
+                        <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
                                 href="{{ url('/books/list') }}">書籍列表</a>
                         </li>
                         <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"

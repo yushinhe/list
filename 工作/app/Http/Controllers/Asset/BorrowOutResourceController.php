@@ -15,8 +15,9 @@ class BorrowOutResourceController extends Controller
      */
     public function index()
     {
+        $page_title='資產借出';
         $borrow = Borrow::paginate(12);
-        return view('page-view.AssetSysBorrowOut', compact('borrow'));
+        return view('page-view.AssetSysBorrowOut', compact('borrow','page_title'));
     }
 
     /**
@@ -48,8 +49,9 @@ class BorrowOutResourceController extends Controller
      */
     public function show($id)
     {
+        $page_title='批示借出';
         $borrow = Borrow::find($id);
-        return view('page-view.AssetSysBorrowOut-2', compact('borrow'));
+        return view('page-view.AssetSysBorrowOut-2', compact('borrow','page_title'));
     }
 
     /**

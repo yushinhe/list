@@ -19,9 +19,10 @@ class WithdrawResourceController extends Controller
      */
     public function index()
     {
+        $page_title='資產領用';
         $object = MoveIn::all();
         $bigtype = AssetCategory::all();
-        return view('page-view.AssetSysWithdraw', compact('object', 'bigtype'));
+        return view('page-view.AssetSysWithdraw', compact('object', 'bigtype','page_title'));
 
     }
 

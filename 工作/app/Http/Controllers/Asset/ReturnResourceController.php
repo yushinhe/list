@@ -16,8 +16,9 @@ class ReturnResourceController extends Controller
      */
     public function index()
     {
+        $page_title='資產歸還';
         $borrows = auth()->user()->borrows;
-        return view('page-view.AssetSysReturn', compact('borrows'));
+        return view('page-view.AssetSysReturn', compact('borrows','page_title'));
     }
 
     /**
@@ -49,8 +50,9 @@ class ReturnResourceController extends Controller
      */
     public function show($id)
     {
+        $page_title='資產歸還';
         $borrow = Borrow::find($id);
-        return view('page-view.AssetSysReturn-1', compact('borrow'));
+        return view('page-view.AssetSysReturn-1', compact('borrow','page_title'));
     }
 
     /**

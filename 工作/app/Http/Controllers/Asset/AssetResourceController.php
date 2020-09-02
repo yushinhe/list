@@ -16,8 +16,9 @@ class AssetResourceController extends Controller
      */
     public function index()
     {
+        $page_title='資產列表';
         $assetCategory = AssetCategory::all();
-        return view('page-view.AssetSysAsset');
+        return view('page-view.AssetSysAsset',compact('page_title'));
     }
 
     /**
@@ -49,9 +50,10 @@ class AssetResourceController extends Controller
      */
     public function show(Request $request, $id)
     {
+        $page_title='資產修改';
         $list = Movein::find($id);
         $bigtype = AssetCategory::all();
-        return view('page-view.AssetSysAsset-edit', compact('list', 'bigtype'));
+        return view('page-view.AssetSysAsset-edit', compact('list', 'bigtype','page_title'));
     }
 
     /**
@@ -62,9 +64,9 @@ class AssetResourceController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        $page_title='詳細資料';
         $list = Movein::find($id);
-
-        return view('page-view.AssetSysAsset-detail', compact('list'));
+        return view('page-view.AssetSysAsset-detail', compact('list','page_title'));
     }
 
     /**

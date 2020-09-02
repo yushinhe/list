@@ -1,6 +1,6 @@
 @extends('layouts.Book')
 @section('content')
-    @if (Auth::user()->AssetController)
+    @if (Auth::user()->BookController)
 
 
         <h2>書籍借出</h2>

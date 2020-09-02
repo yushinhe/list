@@ -16,8 +16,9 @@ class MoveInController extends Controller
      */
     public function index()
     {
+        $page_title='資產移入';
         $assetcategory = AssetCategory::all();
-        return view('page-view.AssetSysMoveIn', compact('assetcategory'));
+        return view('page-view.AssetSysMoveIn', compact('assetcategory','page_title'));
     }
 
     /**

@@ -10,8 +10,9 @@ class WithdrawStatusController extends Controller
 
     public function index()
     {
+        $page_title='領用狀態';
         $withdraw = auth()->user()->withdraws;
-        return view('page-view.AssetSysWithdrawStatus', compact('withdraw'));
+        return view('page-view.AssetSysWithdrawStatus', compact('withdraw','page_title'));
     }
 
 }

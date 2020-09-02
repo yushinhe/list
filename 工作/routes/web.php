@@ -34,14 +34,14 @@ Route::middleware('auth')->group(function () {
         Route::get('index', function () {
             return view('book/index');
         });
-        Route::resource('movein', 'BookInsertResourceController');
-        Route::resource('list', 'BookListResourceController');
-        Route::resource('withdraw', 'WithdrawResourceController');
-        Route::resource('withdraw-check', 'WithdrawCheckResourceController');
-        Route::get('withdraw-status', 'WithdrawStatusController@index');
-        Route::resource('borrow', 'BorrowResourceController');
-        Route::resource('return', 'ReturnResourceController');
-        Route::resource('borrow-out', 'BorrowOutResourceController');
+        Route::resource('b-movein', 'BookInsertResourceController');
+        Route::resource('b-list', 'BookListResourceController');
+        Route::resource('b-withdraw', 'WithdrawResourceController');
+        Route::resource('b-withdraw-check', 'WithdrawCheckResourceController');
+        Route::get('b-withdraw-status', 'WithdrawStatusController@index');
+        Route::resource('b-borrow', 'BorrowResourceController');
+        Route::resource('b-return', 'ReturnResourceController');
+        Route::resource('b-borrow-out', 'BorrowOutResourceController');
     });
 });
 Auth::routes();

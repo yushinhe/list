@@ -14,8 +14,9 @@ class SetCategoryResourceController extends Controller {
     */
 
     public function index() {
+        $page_title='類項管理';
         $bigtype = AssetCategory::all();       
-        return view('page-view.AssetSysSetCategory', compact('bigtype' ) );
+        return view('page-view.AssetSysSetCategory', compact('bigtype','page_title' ) );
     }
 
     /**

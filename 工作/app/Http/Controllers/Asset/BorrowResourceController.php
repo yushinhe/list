@@ -16,8 +16,9 @@ class BorrowResourceController extends Controller
      */
     public function index()
     {
+        $page_title='資產借用';
         $bigtype = AssetCategory::all();
-        return view('page-view.AssetSysBorrow');
+        return view('page-view.AssetSysBorrow',compact('page_title'));
     }
 
     /**

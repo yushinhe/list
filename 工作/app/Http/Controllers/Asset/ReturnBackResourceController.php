@@ -16,8 +16,8 @@ class ReturnBackResourceController extends Controller
     public function index()
     {
         $borrow = Borrow::paginate(12);
-
-        return view('page-view.AssetSysReturnBack', compact('borrow'));
+        $page_title='資產入庫';
+        return view('page-view.AssetSysReturnBack', compact('borrow','page_title'));
     }
 
     /**
@@ -49,8 +49,9 @@ class ReturnBackResourceController extends Controller
      */
     public function show($id)
     {
+        $page_title='入庫確認';
         $borrow = Borrow::find($id);
-        return view('page-view.AssetSysReturnBack-2', compact('borrow'));
+        return view('page-view.AssetSysReturnBack-2', compact('borrow','page_title'));
     }
 
     /**
@@ -77,7 +78,7 @@ class ReturnBackResourceController extends Controller
         $borrow->backtime = $request->input('backtime');
         $borrow->status = $request->input('status');
         $borrow->save();
-        return redirect('asset-sys/returnback');
+        return redirect('asset-sys/returnback')->with('message','資產入庫成功');
 
     }
 

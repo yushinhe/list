@@ -5,6 +5,7 @@
     @if (Auth::user()->AssetController)
 
         {{ $borrow->links() }}
+        <x-alert/>
 
         <h2>歸還入庫</h2>
         <p>歸還明細</p>

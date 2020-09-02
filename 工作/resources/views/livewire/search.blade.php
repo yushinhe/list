@@ -6,7 +6,7 @@
             <div class="d-flex list-group-item list-group-item-action">
                 {{ '品項名稱:' . $l->object }}
                 <a class="px-2" href="{{ route( 'asset.edit', $l->id)  }}">詳細資料</a>
-                @if (Auth::user()->role == 'controller')    
+                @if (Auth::user()->AssetController == 'controller')    
                    <a class="px-2 " href="{{route('asset.show',$l->id)}}"><span
                         class="fas fa-edit text-info "></a>                   
                 <span class=" px-2 fas fa-trash text-danger " onclick="event.preventDefault();

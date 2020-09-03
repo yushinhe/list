@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>資產管理{{ isset($page_title) ?'-'. $page_title : ' ' }}</title>
-    {{-- <title>資產管理-{{ $page_title or ' ' }}</title> --}}
+    {{-- <title>資產管理{{ isset($page_title) ?'-'. $page_title : ' ' }}</title> --}}
+    <title>資產管理-{{ $page_title ?? ' ' }}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

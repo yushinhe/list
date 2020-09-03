@@ -17,8 +17,9 @@ class BookInsertResourceController extends Controller
      */
     public function index()
     {
+        $page_title='圖書移交(新增)';
         $bookcategory = Book_Category::all();
-        return view('book.Insert', compact('bookcategory'));
+        return view('book.Insert', compact('bookcategory','page_title'));
     }
 
     /**

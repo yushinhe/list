@@ -14,8 +14,9 @@ class BookListResourceController extends Controller
      */
     public function index()
     {
+        $page_title='圖書列表';
         $book=Bookmovein::all();
-        return view('book.List',compact('book'));
+        return view('book.List',compact('book','page_title'));
     }
 
     /**
@@ -77,11 +78,13 @@ class BookListResourceController extends Controller
         $book =Bookmovein::find($id);
         $book->position = $request->input('position');
         $book->date = $request->input('date');
-        $book->brand = $request->input('brand');
-        $book->bigtype = $request->input('bigtype');
+        $book->number = $request->input('number');
+        $book->type = $request->input('type');
         $book->object = $request->input('object');
+        $book->issue = $request->input('issue');
+        $book->cost = $request->input('cost');
         $book->save();
-        return redirect('/books/asset')->with('message', '修改完成');
+        return redirect('/books/b-list')->with('message', '修改完成');
     }
 
     /**

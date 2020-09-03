@@ -15,8 +15,9 @@ class ReturnResourceController extends Controller {
     */
 
     public function index() {
+        $page_title='書籍借用狀態';
         $borrows = auth()->user()->book_borrows;
-        return view('book.Return', compact('borrows'));
+        return view('book.Return', compact('borrows','page_title'));
     }
 
     /**
@@ -48,8 +49,9 @@ class ReturnResourceController extends Controller {
     */
 
     public function show( $id ) {
+        $page_title='書籍歸還';
         $borrow = BookBorrow::find($id);
-        return view('book.Return-1', compact('borrow'));
+        return view('book.Return-1', compact('borrow','page_title'));
     }
 
     /**
@@ -75,7 +77,7 @@ class ReturnResourceController extends Controller {
         $borrow = BookBorrow::find($id);
         $borrow->senddated = $request->input('senddated');
         $borrow->save();
-        return redirect('books/return')->with('message', '歸還申請成功');
+        return redirect('books/b-return')->with('message', '歸還申請成功');
     }
 
     /**

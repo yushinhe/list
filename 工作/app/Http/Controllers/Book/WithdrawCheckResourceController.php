@@ -14,8 +14,9 @@ class WithdrawCheckResourceController extends Controller {
     */
 
     public function index() {
+        $page_title='領用確認';
         $withdraw = BookWithdraw::paginate( 15 );
-        return view( 'book.WithdrawCheck', compact( 'withdraw' ) );
+        return view( 'book.WithdrawCheck', compact( 'withdraw','page_title' ) );
     }
 
     /**
@@ -47,8 +48,9 @@ class WithdrawCheckResourceController extends Controller {
     */
 
     public function show( $id ) {
+        $page_title='領用批准';
         $withdraw = BookWithdraw::find( $id );
-        return view( 'book.WithdrawCheck-1', compact( 'withdraw' ) );
+        return view( 'book.WithdrawCheck-1', compact( 'withdraw','page_title' ) );
 
     }
 

@@ -15,7 +15,8 @@ class BorrowResourceController extends Controller
      */
     public function index()
     {
-        return view('book.Borrow');
+        $page_title='書籍借用';
+        return view('book.Borrow',compact('page_title'));
     }
 
     /**

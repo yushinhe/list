@@ -6,7 +6,7 @@ use App\BookBorrow;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class BorrowOutResourceController extends Controller
+class ReturnBackResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class BorrowOutResourceController extends Controller
      */
     public function index()
     {
-        $page_title='借用確認';
         $borrow = BookBorrow::paginate(12);
-        return view('book.BorrowOut', compact('borrow','page_title'));
+        $page_title='資產入庫';
+        return view('book.ReturnBack', compact('borrow','page_title'));
     }
 
     /**
@@ -38,7 +38,7 @@ class BorrowOutResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -49,9 +49,9 @@ class BorrowOutResourceController extends Controller
      */
     public function show($id)
     {
-        $page_title='借用確認批准';
+        $page_title='入庫確認';
         $borrow = BookBorrow::find($id);
-        return view('book.BorrowOut-2', compact('borrow','page_title'));
+        return view('book.ReturnBack-2', compact('borrow','page_title'));
     }
 
     /**
@@ -74,11 +74,12 @@ class BorrowOutResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $borrow =BookBorrow::find($id);
-        $borrow->checkman = $request->input('checkman');
-        $borrow->checked = $request->input('checked');
+        $borrow = BookBorrow::find($id);
+        $borrow->backtime = $request->input('backtime');
+        $borrow->status = $request->input('status');
         $borrow->save();
-        return redirect('books/borrow-out')->with('message', '批准完成');
+        return redirect('books/b-returnback')->with('message','資產入庫成功');
+
     }
 
     /**

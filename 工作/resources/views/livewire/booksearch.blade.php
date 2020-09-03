@@ -4,15 +4,15 @@
         @foreach ($book as $b)
             <div class="d-flex list-group-item list-group-item-action">
                 {{ '品項編號:' . $b->number . '  品項名稱:' . $b->object . '  期號:' . $b->issue }}
-                <a class="px-2" href="{{route('list.edit',$b->id)}}">詳細資料</a>
-                @if (Auth::user()->role == 'controller')
-                    <a class="px-2 " href="{{route('list.show',$b->id)}}"><span
+                <a class="px-2" href="{{route('b-list.edit',$b->id)}}">詳細資料</a>
+                @if (Auth::user()->BookController== 'controller')
+                    <a class="px-2 " href="{{route('b-list.show',$b->id)}}"><span
                             class="fas fa-edit text-info "></a>
 
                     <span class=" px-2 fas fa-trash text-danger "
                         onclick="event.preventDefault();
                              if(confirm('確定要刪除此筆資料?')) { document.getElementById('form-delete-{{ $b->id }}').submit()}"></span>
-                    <form action="{{ route('list.destroy', $b->id) }}" id="{{ 'form-delete-' . $b->id }}"
+                    <form action="{{ route('b-list.destroy', $b->id) }}" id="{{ 'form-delete-' . $b->id }}"
                         method="POST">
                         @csrf
                         @method('delete')

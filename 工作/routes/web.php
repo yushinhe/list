@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('b-borrow', 'BorrowResourceController');
         Route::resource('b-return', 'ReturnResourceController');
         Route::resource('b-borrow-out', 'BorrowOutResourceController');
+        Route::resource('b-returnback', 'ReturnBackResourceController');
+
     });
 });
 Auth::routes();

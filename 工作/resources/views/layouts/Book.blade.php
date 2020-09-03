@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>book</title>
+    <title>圖書管理{{ isset($page_title) ? '-' . $page_title : ' ' }}</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -65,7 +65,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                                                                                 document.getElementById('logout-form').submit();">
+                                                                                                                         document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
@@ -82,29 +82,32 @@
             <div class="sidebar p-3 bg-light animated slideInLeft">
                 <ul class="list-group p-2 list-unstyled">
                     <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
-                            href="{{ url('/books/withdraw') }}">書籍領用</a>
+                            href="{{ url('/books/b-withdraw') }}">書籍領用</a>
                     </li>
                     <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
-                            href="{{ url('/books/withdraw-status') }}">領用狀態</a>
+                            href="{{ url('/books/b-withdraw-status') }}">領用狀態</a>
                     </li>
                     <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
-                            href="{{ url('/books/borrow') }}">書籍借用</a>
+                            href="{{ url('/books/b-borrow') }}">書籍借用</a>
                     </li>
                     <li><a class="list-group-item list-group-item-action btn btn-outline-danger my-2"
-                        href="{{ url('/books/return') }}">書籍歸還</a>
-                </li>
+                            href="{{ url('/books/b-return') }}">書籍歸還</a>
+                    </li>
                     @if (Auth::user()->BookController)
                         <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
-                                href="{{ url('/books/withdraw-check') }}">領用確認</a>
+                                href="{{ url('/books/b-withdraw-check') }}">領用確認</a>
                         </li>
                         <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
-                            href="{{ url('/books/borrow-out') }}">借用確認</a>
-                    </li>
-                        <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
-                                href="{{ url('/books/list') }}">書籍列表</a>
+                                href="{{ url('/books/b-borrow-out') }}">借用確認</a>
                         </li>
                         <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
-                                href="{{ url('/books/movein') }}">移入書籍</a>
+                                href="{{ url('/books/b-returnback') }}">書籍入庫</a>
+                        </li>
+                        <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
+                                href="{{ url('/books/b-list') }}">書籍列表</a>
+                        </li>
+                        <li><a class="list-group-item list-group-item-action btn btn-outline-info my-2"
+                                href="{{ url('/books/b-movein') }}">移入書籍</a>
                         </li>
                     @endif
 

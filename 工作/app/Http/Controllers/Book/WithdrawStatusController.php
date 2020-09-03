@@ -10,8 +10,9 @@ class WithdrawStatusController extends Controller
 
     public function index()
     {
+        $page_title='領用狀態';
         $withdraw = auth()->user()->book_withdraws;
-        return view('book.WithdrawStatus', compact('withdraw'));
+        return view('book.WithdrawStatus', compact('withdraw','page_title'));
     }
 
 }
